@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, json } from "express";
 import * as http from "http";
 import cors from 'cors';
+import { MongoDbConnection } from "./infrastructure/mongoDbConnection";
 
 
 export class App {
@@ -34,7 +35,9 @@ export class App {
         this.httpServer = this.getHTTPServer();
     }
 
-    public init(port: string) {
+    public async init(port: string) {
+        const mongoConnection = new MongoDbConnection();
+        await mongoConnection.connect();
         return this.listen(port);
     }
 
