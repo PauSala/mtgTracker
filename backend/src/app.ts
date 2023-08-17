@@ -2,6 +2,7 @@ import express, { Application, Request, Response, json } from "express";
 import * as http from "http";
 import cors from 'cors';
 import { MongoDbConnection } from "./infrastructure/mongoDbConnection";
+import { MessageMongoDbModel } from "./infrastructure/messagesMongoDb";
 
 
 export class App {
@@ -10,7 +11,7 @@ export class App {
 
 
     constructor(
-        objects: any[]
+        private objects: any[]
     ) {
         this.app = express();
         this.app.use(json());
@@ -38,6 +39,10 @@ export class App {
     public async init(port: string) {
         const mongoConnection = new MongoDbConnection();
         await mongoConnection.connect();
+        for(const object of this.objects){
+            const model = new MessageMongoDbModel(object);
+            await model.save();
+        }
         return this.listen(port);
     }
 
