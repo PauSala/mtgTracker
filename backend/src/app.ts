@@ -27,6 +27,10 @@ export class App {
             res.json(objects[page]);
         })
 
+        this.app.get("/objects/props/size", async (req, res) => {
+            res.json({size: objects.length});
+        })
+
         this.httpServer = this.getHTTPServer();
     }
 

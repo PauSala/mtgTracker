@@ -53,6 +53,9 @@ class App {
             const page = parseInt(req.params.page);
             res.json(objects[page]);
         }));
+        this.app.get("/objects/props/size", (req, res) => __awaiter(this, void 0, void 0, function* () {
+            res.json({ size: objects.length });
+        }));
         this.httpServer = this.getHTTPServer();
     }
     init(port) {
