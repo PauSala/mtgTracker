@@ -30,7 +30,6 @@ export class FromClientMessageParser {
                     message
                 }
             } catch (e) {
-                console.log("line", line)
                 console.log(e);
             }
         }

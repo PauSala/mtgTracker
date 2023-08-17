@@ -26,7 +26,6 @@ export class FromServerMessageParser {
 
             } catch (e) {
                 console.log(e);
-                return null
             }
         }
         return null;
