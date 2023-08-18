@@ -37,7 +37,8 @@ This tables are:
 
 The log provides several types of messages:
 
-- Strings
+- Strings (well, all are strings)
+- Strings containing a parseable JSON in the same line 
 - JSON parseable strings in a single line
 - Multiline JSON parseable strings
 
