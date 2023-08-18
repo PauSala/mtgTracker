@@ -70,7 +70,7 @@ The naive strategy adopted to parse the log is based on the previous classificat
   - If matches, next line is a single-line JSON
 
 Depending on the nature of the current message, the parsing of a line may trigger the parsing of the next line, or multiple lines may be accumulated for parsing a conforming multiline JSON.
-This straightforward strategy appears to be quite effective.
-In `backend/dist/src/data/trash.log` file, unprocessed lines are logged. For a sample Player.log file with a bunch of activity (multiple games, deck changes, etc.) the only non parsed JSON objects came from `AuthenticateResponse`  and `ClientToMatchServiceMessageType_ClientToGREUIMessage` messages, wich both are intentionally ignored. Of course they can be parsed as well following the same strategy. 
-
+This straightforward strategy appears to be quite effective.    
+In `backend/dist/src/data/trash.log` file, unprocessed lines are logged. For a sample Player.log file with a bunch of activity (multiple games, deck changes, etc.) the only non parsed JSON objects came from `AuthenticateResponse`  and `ClientToMatchServiceMessageType_ClientToGREUIMessage` messages, wich both are intentionally ignored. Of course they can be parsed as well with same strategy.   
+  
 In conclusion, with this strategy all relevant messages are stored and classified. 
