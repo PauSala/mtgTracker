@@ -1,4 +1,7 @@
-export type CustomMessage = {
+export type CustomMessage<T extends Record<string, unknown>> = {
+    name: string;
     type: string;
-    message: Record<string, unknown> | undefined;
+    belongsToMatch: boolean;
+    matchId: string | null;
+    message: T;
 }

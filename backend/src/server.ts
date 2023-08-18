@@ -1,15 +1,15 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { App } from "./app";
-import { logReader } from './log-reader';
+import { logParser } from './lib/log-parser';
 
 const port = process.env.PORT;
 const main = async () => {
     if (!port) {
         return Promise.reject("Error: No port provided");
     }
-    const response =  await logReader();
-    const application = new App(response);
+    const parsedLog =  await logParser();
+    const application = new App(parsedLog);
     await application.init(port);
     console.log(`\x1b[36mServer runnig on \x1b[33m http://localhost:${port} \n\x1b[0m`);
 }

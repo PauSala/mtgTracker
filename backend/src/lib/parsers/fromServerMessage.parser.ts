@@ -1,6 +1,8 @@
-import { CustomMessage } from "./types";
+import { CustomMessage } from "../types";
+import { MessageParser } from "./messageparser";
 
-export class FromServerMessageParser {
+export class FromServerMessageParser
+    implements MessageParser<Record<string, unknown>> {
 
     //matches literal prefix
     private readonly IS_MESSAGE_FROM_SERVER_REGEX = /\[UnityCrossThreadLogger\]==> /;
@@ -12,16 +14,19 @@ export class FromServerMessageParser {
         return this.IS_MESSAGE_FROM_SERVER_REGEX.test(line);
     }
 
-    public getMessage(line: string): CustomMessage | null {
+    public getMessage(line: string, matchId: string | null): CustomMessage<Record<string, unknown>> | null {
         const match = this.PREFIX_BEFORE_JSON_REGEX.exec(line);
         if (match?.length) {
             try {
                 const message = JSON.parse(line.slice(match[0].length));
-                const type = match[0].replace(this.IS_MESSAGE_FROM_SERVER_REGEX, "").trim();
+                const name = match[0].replace(this.IS_MESSAGE_FROM_SERVER_REGEX, "").trim();
 
                 return {
-                    type,
-                    message: this.parseRequest(message)
+                    name,
+                    type: "fromServerMessage",
+                    belongsToMatch: matchId !== null,
+                    matchId: matchId,
+                    message: this.parseRequest(message),
                 }
 
             } catch (e) {
@@ -44,6 +49,7 @@ export class FromServerMessageParser {
 
         } catch (e) {
             console.log(e);
+            return {}
         }
     }
 

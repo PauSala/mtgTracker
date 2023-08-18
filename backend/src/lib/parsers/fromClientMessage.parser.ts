@@ -1,6 +1,8 @@
-import { CustomMessage } from "./types";
+import { CustomMessage } from "../types";
+import { MessageParser } from "./messageparser";
 
-export class FromClientMessageParser {
+export class FromClientMessageParser
+    implements MessageParser<Record<string, unknown>> {
 
     //matches literal prefix
     private readonly IS_MESSAGE_FROM_CLIENT_REGEX = /<== /;
@@ -21,12 +23,15 @@ export class FromClientMessageParser {
         return match;
     }
 
-    public getMessage(line: string): CustomMessage | null {
+    public getMessage(line: string, matchId: string | null): CustomMessage<Record<string, unknown>> | null {
         if (line[0] === "{") {
             try {
                 const message = JSON.parse(line);
                 return {
-                    type: this.currentMessageType,
+                    name: this.currentMessageType,
+                    type: "fromClientMessage",
+                    belongsToMatch: matchId !== null,
+                    matchId: matchId,
                     message
                 }
             } catch (e) {
