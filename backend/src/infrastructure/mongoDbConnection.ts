@@ -18,7 +18,7 @@ export class MongoDbConnection {
         const uri = `mongodb://localhost`;
         await mongoose.connect(uri, this.options);
 
-        console.log(`\x1b[36m 🍃 MongoDB connected and running on  27017 🍃 \x1b[0m`);
+        console.log(`\x1b[36m🍃 MongoDB connected and running on  27017 🍃 \x1b[0m`);
         
     }
 
