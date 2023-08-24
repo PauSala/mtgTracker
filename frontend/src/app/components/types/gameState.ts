@@ -1,14 +1,17 @@
-import { GameObject, Zone } from "./step.types";
+import { Annotation, GameInfo, GameObject, Zone } from "./step.types";
+
 
 export type GameState = {
     gameObjects: GameObject[];
     zones: (Zone & { mappedInstances: { arena_id: number | undefined, instanceId: number }[] })[];
+    annotations: Annotation[];
+    gameInfo: GameInfo;
     phase: string;
     step: string;
     turnNumber: number;
     turnPlayer: number
-    decisionPlayer:  number;
-    priorityPlayer:  number;
+    decisionPlayer: number;
+    priorityPlayer: number;
 }
 
 export type UICard = {
@@ -19,18 +22,22 @@ export type UICard = {
     visibility: string,
     ownerSeatId: number,
     controllerSeatId: number,
-    cardTypes: Array<string>,
+    cardTypes?: Array<string>,
     name: string,
-    overlayGrpId: number,
-    arena_id: number,
-    image_uris: [
-        {
-            small: string,
-            normal: string,
-            large: string,
-            png: string,
-            art_crop: string,
-            border_crop: string,
-        }
-    ]
+    overlayGrpId?: number,
+    arena_id?: number,
+    isTapped?: boolean,
+    attackState?: string;
+    attackInfo?: {
+        targetId: number;
+        damageOrdered: boolean;
+    };
+    defense?: { value: number };
+    hasSummoningSickness?: boolean;
+    blockState?: string;
+    blockInfo?: {
+        attackerIds: Array<number>;
+        damageOrdered: true;
+    };
+    orderedAttackers?: Array<{ instanceId: number }>
 }

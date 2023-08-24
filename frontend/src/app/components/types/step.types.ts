@@ -146,23 +146,38 @@ export type Zone = {
     viewers?: Array<number>
 }
 
+export type Annotation = {
+    id: number;
+    affectedIds: Array<number>;
+    type: Array<AnnotationType>;
+    affectorId?: number;
+    details?: {
+        key: AnnotationDetailsKey;
+        type: "KeyValuePairValueType_int32" | "KeyValuePairValueType_string";
+        valueInt32?: Array<number>;
+        valueString?: Array<AnnotationValueString>
+    }[]
+}
+
+export type GameInfo = {
+    matchID: string;
+    gameNumber: number;
+    stage: GameStage;
+    type: string;
+    variant: string;
+    matchState: string;
+    matchWinCondition: string;
+    superFormat: string;
+    mulliganType: string;
+}
+
 export type GameStateMessage = {
     gameStateId: number;
     msgId: number;
     gameStateMessage: {
         type: string | "GameStateType_Full" | "GameStateType_Diff";
         gameStateId: number;
-        gameInfo: {
-            matchID: string;
-            gameNumber: number;
-            stage: GameStage;
-            type: string;
-            variant: string;
-            matchState: string;
-            matchWinCondition: string;
-            superFormat: string;
-            mulliganType: string;
-        };
+        gameInfo: GameInfo;
         players?: {
             lifeTotal: number;
             systemSeatNumber: number;
@@ -188,19 +203,7 @@ export type GameStateMessage = {
         };
         zones?: Zone[];
         gameObjects?: GameObject[];
-        annotations?:
-        {
-            id: number;
-            affectedIds: Array<number>;
-            type: Array<AnnotationType>;
-            affectorId?: number;
-            details?: {
-                key: AnnotationDetailsKey;
-                type: "KeyValuePairValueType_int32" | "KeyValuePairValueType_string";
-                valueInt32?: Array<number>;
-                valueString?: Array<AnnotationValueString>
-            }[]
-        }[];
+        annotations?: Annotation[];
         prevGameStateId: number,
     };
 }

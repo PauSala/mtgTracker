@@ -2,3 +2,5 @@ Player.log
 cards.json
 /node_modules
 /dist
+/.env
+raw_card_database.sqlite

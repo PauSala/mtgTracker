@@ -8,8 +8,8 @@ export class MongoDbConnection {
 
         this.options = {
             dbName: "mtg_arena_tracker",
-            user: "",
-            pass: "",
+            user: process.env.MONGODB_USR || "",
+            pass: process.env.MONGODB_PWD || "",
         };
 
     }

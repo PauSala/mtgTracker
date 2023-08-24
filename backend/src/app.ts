@@ -1,14 +1,22 @@
 import express, { Application, Request, Response, json } from "express";
 import * as http from "http";
 import cors from 'cors';
-import { MongoDbConnection } from "./infrastructure/mongoDbConnection";
-import { GreToClientMessageMongoDbModel, IMessage, FromClientMessageMongoDbModel, ClientToGREMessageMongoDbModel, FromServerMessageMongoDbModel, MatchGameRoomStateMessageMongoDbModel } from "./infrastructure/messagesMongoDb";
+import { MongoDbConnection } from "./infrastructure/mongoDb/mongoDbConnection";
+import {
+    GreToClientMessageMongoDbModel,
+    IMessage,
+    FromClientMessageMongoDbModel,
+    ClientToGREMessageMongoDbModel,
+    FromServerMessageMongoDbModel,
+    MatchGameRoomStateMessageMongoDbModel
+} from "./infrastructure/mongoDb/messagesMongoDb";
 import { Document, Types } from "mongoose";
 import { resolve } from "path";
-import { CardMongoDbModel } from "./infrastructure/cardsMongoDb";
+import { CardMongoDbModel } from "./infrastructure/mongoDb/cardsMongoDb";
 import { readFileSync } from "fs";
-import { GameStateMessage } from "./lib/gamePlay/step.types";
+import { GameInfo, GameStateMessage } from "./lib/gamePlay/step.types";
 import { GameState, updateGameState } from "./lib/gamePlay/stepProcessor";
+import { getCard } from "./infrastructure/sqliteDb/sqliteCardRepository";
 
 
 export class App {
@@ -69,7 +77,9 @@ export class App {
                 turnPlayer: -1,
                 decisionPlayer: -1,
                 priorityPlayer: -1,
-                turnNumber: -1
+                turnNumber: -1,
+                gameInfo: {} as GameInfo,
+                annotations: []
             }
             gameStateMessages.forEach((obj: GameStateMessage) => {
                 const newState = updateGameState(obj, currentGameState);
@@ -77,14 +87,15 @@ export class App {
                 currentGameState = { ...newState };
             });
             let end = performance.now();
-            console.log((end - start) / 1000.0);
+            const timeToProcess = (end - start) / 1000.0;
+            console.log(`\x1b[36mProcess game took ${timeToProcess} miliseconds \n\x1b[0m`);
             res.json(states);
 
         })
 
         this.app.get("/card/:cardid", async (req, res) => {
             const cardId = req.params.cardid;
-            const card = await CardMongoDbModel.findOne({ arena_id: cardId });
+            const card = await getCard(cardId);
             return res.json(card);
         })
 
@@ -105,7 +116,7 @@ export class App {
 
     private async populateMongo() {
         //await this.populateCards();
-        //await this.populateMessages();
+        await this.populateMessages();
     }
 
     private async populateCards() {
