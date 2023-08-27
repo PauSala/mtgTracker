@@ -40,4 +40,6 @@ export type UICard = {
         damageOrdered: true;
     };
     orderedAttackers?: Array<{ instanceId: number }>
+    power?: string;
+    toughness?: string;
 }

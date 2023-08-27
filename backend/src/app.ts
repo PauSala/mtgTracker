@@ -16,7 +16,7 @@ import { CardMongoDbModel } from "./infrastructure/mongoDb/cardsMongoDb";
 import { readFileSync } from "fs";
 import { GameInfo, GameStateMessage } from "./lib/gamePlay/step.types";
 import { GameState, updateGameState } from "./lib/gamePlay/stepProcessor";
-import { getCard } from "./infrastructure/sqliteDb/sqliteCardRepository";
+import { getCard, getHability } from "./infrastructure/sqliteDb/sqliteCardRepository";
 
 
 export class App {
@@ -96,6 +96,12 @@ export class App {
         this.app.get("/card/:cardid", async (req, res) => {
             const cardId = req.params.cardid;
             const card = await getCard(cardId);
+            return res.json(card);
+        })
+
+        this.app.get("/ability/:abilityId", async (req, res) => {
+            const abilityId = req.params.abilityId;
+            const card = await getHability(abilityId);
             return res.json(card);
         })
 

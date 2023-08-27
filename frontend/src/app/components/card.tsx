@@ -8,7 +8,7 @@ import React from "react";
 import { UICard } from "./types/gameState";
 
 const cardClass = (card: UICard, player: number) => {
-  let cardClass = "h-full m-px w-36 max-h-52";
+  let cardClass = "h-full m-px w-36 max-h-52 justify-between";
   const rotate = player === 1 ? "rotate-15" : "-rotate-15";
   cardClass = card.isTapped ? `${cardClass} ${rotate}` : cardClass;
   cardClass = card.attackState
@@ -44,12 +44,15 @@ export default function GameObjectCard({
           <Typography variant="h6" color="white" className="mb-1">
             {card.name}
           </Typography>
-          <Typography>{card.type}</Typography>
+          <Typography variant="small">{card.type}</Typography>
         </CardBody>
+
         {card.attackState && card.attackInfo?.targetId && (
           <CardFooter className="pt-0">
             {(attackTo && (
-              <Typography className="c-white">Attack to {attackTo}</Typography>
+              <Typography className="c-white" variant="small">
+                Attack to {attackTo}
+              </Typography>
             )) || <></>}
           </CardFooter>
         )}
@@ -58,10 +61,20 @@ export default function GameObjectCard({
             {blockersToPrint.map((name, idx) => {
               return (
                 ({ name } && (
-                  <Typography key={idx}> Blocking to: {name}</Typography>
+                  <Typography variant="small" key={idx}>
+                    {" "}
+                    Blocking to: {name}
+                  </Typography>
                 )) || <></>
               );
             })}
+          </CardFooter>
+        )}
+        {(card.power || card.toughness) && (
+          <CardFooter className="p-1 flex items-center justify-end">
+            <div className="flex justify-end">
+              {card.power}/{card.toughness}
+            </div>
           </CardFooter>
         )}
       </Card>

@@ -118,7 +118,10 @@ export type GameObject = {
     controllerSeatId: 1;
     name: number;
     abilities: Array<number>;
-    overlayGrpId: number
+    overlayGrpId: number;
+    power?: { value: number };
+    toughness?: { value: number };
+    parentId?: number;
     viewers?: Array<number>;
     isTapped?: boolean;
     attackState?: string;

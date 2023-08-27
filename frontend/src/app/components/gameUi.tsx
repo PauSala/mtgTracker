@@ -4,6 +4,7 @@ import { Zone } from "./types/step.types";
 import { UICard } from "./types/gameState";
 import GameObjectCard from "./card";
 import { Typography } from "@material-tailwind/react";
+import Card from "@material-tailwind/react/components/Card";
 
 export function GameUi({
   zones,
@@ -124,7 +125,14 @@ export function GameUi({
         </div>
         <div className="col-span-1 bg-stack_bg">
           {stack.map((card) => (
-            <Typography key={card.instanceId}>{card.name}</Typography>
+            <Card
+              key={card.instanceId}
+              className="p-2 m-2"
+              color="gray"
+              variant="gradient"
+            >
+              <Typography variant="small">{card.name}</Typography>
+            </Card>
           ))}
         </div>
       </div>

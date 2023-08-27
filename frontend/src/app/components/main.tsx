@@ -59,19 +59,40 @@ export const updateCards = (
     return;
   }
 
-  const msgCards = [...gameObjects];
+  const goCopy = [...gameObjects];
   const toRemove = cards.filter(
-    (c) => !msgCards.map((card) => card.instanceId).includes(c.instanceId)
+    (c) => !goCopy.map((card) => card.instanceId).includes(c.instanceId)
   );
 
   const newCards: any[] = [];
 
   const fetchData = async () => {
-    for (const msgCard of msgCards) {
+    for (const gameObject of goCopy) {
       const card = await (
-        await fetch(`http://localhost:3001/card/${msgCard.grpId}`)
+        await fetch(`http://localhost:3001/card/${gameObject.grpId}`)
       ).json();
-      newCards.push({ ...msgCard, ...card });
+      if (!card) {
+        let ability = await (
+          await fetch(`http://localhost:3001/ability/${gameObject.grpId}`)
+        ).json();
+        const parent = cards.find(
+          (card) => card.instanceId === gameObject.parentId
+        );
+        if (parent) {
+          ability.name = ability.name.replace(/CARDNAME/g, parent.name);
+          newCards.push({ ...gameObject, ...ability });
+        } else {
+          console.log("Error", gameObject);
+        }
+        continue;
+      }
+      if (gameObject.power) {
+        card.power = gameObject.power.value;
+      }
+      if (gameObject.toughness) {
+        card.toughness = gameObject.toughness.value;
+      }
+      newCards.push({ ...gameObject, ...card });
     }
     setCards((old) => {
       let updated = old
@@ -85,5 +106,5 @@ export const updateCards = (
       return updated;
     });
   };
-  fetchData().catch((e) => console.log(msgCards));
+  fetchData().catch((e) => console.log(goCopy));
 };
