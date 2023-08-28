@@ -20,7 +20,6 @@ export const logParser = async () => {
     let isReadingClientToMatchServiceMessageType_ClientToGREMessageParser = false;
     let isReadingGreToClientMessageParser = false;
     let isReadingMatchGameRoomStateChangedEventMessageParser = false;
-    let unparsedLines = "";
     let currentMatchId: string | null = null;
 
     const rl = createInterface(
@@ -36,7 +35,7 @@ export const logParser = async () => {
     const clientToMatchServiceMessageType_ClientToGREMessageParser = new ClientToMatchServiceMessageType_ClientToGREMessageParser();
     const matchGameRoomStateChangedEventMessageParser = new MatchGameRoomStateChangedEventMessageParser();
 
-    rl.on('line', (line) => {
+    rl.on("line", (line) => {
 
         if (fromServerMessageParser.match(line)) {
             const message = fromServerMessageParser.getMessage(line, currentMatchId);
@@ -81,16 +80,16 @@ export const logParser = async () => {
             }
             return
         }
-        if(matchGameRoomStateChangedEventMessageParser.match(line)){
+        if (matchGameRoomStateChangedEventMessageParser.match(line)) {
             isReadingMatchGameRoomStateChangedEventMessageParser = true;
             return;
         }
-        if(isReadingMatchGameRoomStateChangedEventMessageParser){
+        if (isReadingMatchGameRoomStateChangedEventMessageParser) {
             const message = matchGameRoomStateChangedEventMessageParser.getMessage(line, null);
-            if(message){
-                if(message.message.matchGameRoomStateChangedEvent.gameRoomInfo.stateType === "MatchGameRoomStateType_Playing"){
+            if (message) {
+                if (message.message.matchGameRoomStateChangedEvent.gameRoomInfo.stateType === "MatchGameRoomStateType_Playing") {
                     currentMatchId = message.message.matchGameRoomStateChangedEvent.gameRoomInfo.gameRoomConfig.matchId;
-                }else if(message.message.matchGameRoomStateChangedEvent.gameRoomInfo.stateType === "MatchGameRoomStateType_MatchCompleted"){
+                } else if (message.message.matchGameRoomStateChangedEvent.gameRoomInfo.stateType === "MatchGameRoomStateType_MatchCompleted") {
                     currentMatchId = null;
                 }
                 objects.push(message);
@@ -98,15 +97,14 @@ export const logParser = async () => {
             isReadingMatchGameRoomStateChangedEventMessageParser = false;
             return;
         }
-        if(line.length){
-            appendFile(resolve(__dirname, "..", "data", "trash.log"),`${line}\n`, () => void 0)
+        if (line.length) {
+            appendFile(resolve(__dirname, "..", "data", "trash.log"), `${line}\n`, () => void 0)
         }
 
     });
 
-    await once(rl, 'close');
-    console.log(unparsedLines);
-    console.log('Reading file line by line with readline done.');
+    await once(rl, "close");
+    console.log("Reading file line by line with readline done.");
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
     return objects;
