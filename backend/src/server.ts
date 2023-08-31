@@ -1,23 +1,10 @@
 import dotenv from "dotenv";
+import { LogWatcher } from "./lib/log-wathcer";
 import { getLogFilePath } from "./lib/getLogPath";
-import { TailPolling } from "./lib/watcher/tail";
-import { resolve } from "path";
+import { LineParser } from "./lib/line-parser";
+import { Queue } from "./lib/queue";
+//import { App } from "./app";
 dotenv.config();
-
-
-const writePath = resolve(__dirname, "data", "logCopy.log");
-
-
-const tail = new TailPolling(getLogFilePath(), writePath);
-setInterval(() => {
-    try {
-        tail.poll();
-    } catch (e) {
-        console.log(e)
-    }
-}, 100);
-/* import { App } from "./app";
-import { logParser } from "./lib/log-parser";
 
 
 const port = process.env.PORT;
@@ -27,10 +14,11 @@ const main = async () => {
     if (!port) {
         return Promise.reject("Error: No port provided");
     }
-    const parsedLog = await logParser();
-    const application = new App(parsedLog);
-    await application.init(port);
-    console.log(`\x1b[36mServer runnig on \x1b[33m http://localhost:${port} \n\x1b[0m`);
+    const logWatcher = new LogWatcher(getLogFilePath(), new LineParser(new Queue()));
+    logWatcher.init();
+    /*     const application = new App();
+        await application.init(port);
+        console.log(`\x1b[36mServer runnig on \x1b[33m http://localhost:${port} \n\x1b[0m`); */
 }
 
 main().catch((err) => {
@@ -40,5 +28,5 @@ main().catch((err) => {
 process.on("uncaughtException", err => {
     console.log(err);
     process.exit(1);
-}); */
+});
 

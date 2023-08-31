@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Application, Request, Response, json } from "express";
 import * as http from "http";
-import cors from 'cors';
+import cors from "cors";
 import { MongoDbConnection } from "./infrastructure/mongoDb/mongoDbConnection";
 import {
     GreToClientMessageMongoDbModel,
@@ -11,9 +12,6 @@ import {
     MatchGameRoomStateMessageMongoDbModel
 } from "./infrastructure/mongoDb/messagesMongoDb";
 import { Document, Types } from "mongoose";
-import { resolve } from "path";
-import { CardMongoDbModel } from "./infrastructure/mongoDb/cardsMongoDb";
-import { readFileSync } from "fs";
 import { GameInfo, GameStateMessage } from "./lib/gamePlay/step.types";
 import { GameState, updateGameState } from "./lib/gamePlay/stepProcessor";
 import { getCard, getHability } from "./infrastructure/sqliteDb/sqliteCardRepository";
@@ -24,40 +22,40 @@ export class App {
     private httpServer: http.Server;
 
 
-    constructor(
-        private objects: any[]
-    ) {
+    constructor() {
         this.app = express();
         this.app.use(json());
         this.app.use(cors({
-            origin: '*'
+            origin: "*"
         }));
 
 
-        this.app.get('/health', (_req: Request, res: Response) => {
-            res.status(200).json({ ok: 'Sever is running' });
+        this.app.get("/health", (_req: Request, res: Response) => {
+            res.status(200).json({ ok: "Sever is running" });
         });
 
         this.app.get("/objects", async (req, res) => {
             const response: any[] = [];
-            objects
-                .filter(o => o.type === "GreToClientEvent" && o.matchId === "00109e5b-4ffd-42f3-adae-571014377fd9")
-                .forEach(o => {
-                    const data = o.message.greToClientEvent.greToClientMessages
-                        .filter((e: any) => e.type === "GREMessageType_GameStateMessage");
-                    if (data.length) {
-                        for (const elem of data) {
-                            response.push(elem);
-                        }
-                    }
-                });
+            /*    parsedLog
+                   .lines
+                   .filter(o => o.type === "GreToClientEvent" && o.matchId === "00109e5b-4ffd-42f3-adae-571014377fd9")
+                   .forEach(o => {
+                       const data = o.message.greToClientEvent.greToClientMessages
+                           .filter((e: any) => e.type === "GREMessageType_GameStateMessage");
+                       if (data.length) {
+                           for (const elem of data) {
+                               response.push(elem);
+                           }
+                       }
+                   }); */
             return res.json(response);
         });
 
         this.app.get("/gamePlay", async (req, res) => {
             const gameStateMessages: any[] = [];
-            let start = performance.now();
-            objects
+            const start = performance.now();
+            /* parsedLog
+                .lines
                 .filter(o => o.type === "GreToClientEvent" && o.matchId === "00109e5b-4ffd-42f3-adae-571014377fd9")
                 .forEach(o => {
                     const data = o.message.greToClientEvent.greToClientMessages
@@ -67,8 +65,8 @@ export class App {
                             gameStateMessages.push(elem);
                         }
                     }
-                });
-            let states: GameState[] = [];
+                }); */
+            const states: GameState[] = [];
             let currentGameState: GameState = {
                 gameObjects: [],
                 zones: [],
@@ -86,7 +84,7 @@ export class App {
                 states.push(newState);
                 currentGameState = { ...newState };
             });
-            let end = performance.now();
+            const end = performance.now();
             const timeToProcess = (end - start) / 1000.0;
             console.log(`\x1b[36mProcess game took ${timeToProcess} miliseconds \n\x1b[0m`);
             res.json(states);
@@ -103,11 +101,7 @@ export class App {
             const abilityId = req.params.abilityId;
             const card = await getHability(abilityId);
             return res.json(card);
-        })
-
-        this.app.get("/objects/props/size", async (req, res) => {
-            res.json({ size: objects.length });
-        })
+        });
 
         this.httpServer = this.getHTTPServer();
     }
@@ -116,47 +110,25 @@ export class App {
         const mongoConnection = new MongoDbConnection();
         await mongoConnection.connect();
         await this.populateMongo();
-
         return this.listen(port);
     }
 
+
     private async populateMongo() {
-        //await this.populateCards();
-        await this.populateMessages();
-    }
-
-    private async populateCards() {
-        await CardMongoDbModel.deleteMany({});
-        const path = resolve(__dirname, "data", "cards.json");
-        const file = readFileSync(path, "utf-8");
-        const cards = JSON.parse(file);
-        console.log(`\x1b[33mloading card database... \x1b[0m`);
-        for (const card of cards) {
-            //Only MTGArena cards
-            if (!card.arena_id) {
-                continue
-            }
-            if (!card.card_faces) {
-                card.image_uris = [card.image_uris];
-            } else {
-                card.image_uris = card.card_faces.map((c: any) => c.image_uris);
-            }
-            delete card.id //to avoid mongo complainig about trying to set _id as non ObjectId. 
-            const cardModel = new CardMongoDbModel(card);
-            await cardModel.save();
-        }
-        console.log(`\x1b[33mDone! \x1b[0m`);
-    }
-
-    private async populateMessages() {
         await GreToClientMessageMongoDbModel.deleteMany({});
         await ClientToGREMessageMongoDbModel.deleteMany({});
         await FromClientMessageMongoDbModel.deleteMany({});
         await FromServerMessageMongoDbModel.deleteMany({});
         await MatchGameRoomStateMessageMongoDbModel.deleteMany({});
-        console.log(`\x1b[33mloading messages... \x1b[0m`);
-        for (const object of this.objects) {
-            let model: Document<unknown, {}, IMessage> & IMessage & {
+        //await this.populateMessages(this.parsedLog.lines);
+    }
+
+    private async populateMessages(objects: any[]) {
+
+        console.log("\x1b[33mloading messages... \x1b[0m");
+
+        for (const object of objects) {
+            let model: Document<unknown, object, IMessage> & IMessage & {
                 _id: Types.ObjectId;
             } | null = null;
             switch (object.type) {
@@ -180,7 +152,7 @@ export class App {
                 await model.save();
             }
         }
-        console.log(`\x1b[33mDone!... \x1b[0m`);
+        console.log("\x1b[33mDone!... \x1b[0m");
     }
 
     private async listen(port: string): Promise<void> {
