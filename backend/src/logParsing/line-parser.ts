@@ -1,5 +1,5 @@
 import { appendFile } from "fs";
-import { CustomMessage } from "../domain/custom-message";
+import { CustomMessage } from "./custom-message";
 import { resolve } from "path";
 import { Queue } from "./queue";
 import { ClientToMatchServiceMessageType_ClientToGREMessageParser } from "./parsers/clientToMatchServiceMessageType_ClientToGREMessage.parser";

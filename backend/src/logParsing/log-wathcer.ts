@@ -3,7 +3,7 @@ import { createInterface } from "readline";
 import { createReadStream, existsSync } from "fs";
 import EventEmitter, { once } from "events";
 import { LineParser } from "./line-parser";
-import { CustomMessage } from "../domain/custom-message";
+import { CustomMessage } from "./custom-message";
 import { LinePolling } from "./line-polling";
 import { getLogFilePath } from "./get-log-path";
 import { emitOnFileChange } from "./emit-on-file-change";

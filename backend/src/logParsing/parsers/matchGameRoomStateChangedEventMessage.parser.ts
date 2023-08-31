@@ -1,4 +1,4 @@
-import { CustomMessage } from "../../domain/custom-message";
+import { CustomMessage } from "../custom-message";
 import { MatchGameRoomStateChangedEvent } from "./messageTypes";
 import { MessageParser } from "./messageparser";
 

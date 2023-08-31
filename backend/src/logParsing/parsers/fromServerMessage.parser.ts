@@ -1,4 +1,4 @@
-import { CustomMessage } from "../../domain/custom-message";
+import { CustomMessage } from "../custom-message";
 import { MessageParser } from "./messageparser";
 
 export class FromServerMessageParser
