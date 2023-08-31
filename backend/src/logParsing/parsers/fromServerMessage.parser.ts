@@ -1,4 +1,4 @@
-import { CustomMessage } from "../types";
+import { CustomMessage } from "../../domain/custom-message";
 import { MessageParser } from "./messageparser";
 
 export class FromServerMessageParser
@@ -8,7 +8,7 @@ export class FromServerMessageParser
     private readonly IS_MESSAGE_FROM_SERVER_REGEX = /\[UnityCrossThreadLogger\]==> /;
 
     //matches until json start, therefore, next char index is the JSON start
-    private readonly PREFIX_BEFORE_JSON_REGEX = /\[UnityCrossThreadLogger\]==>[^\{]*/;
+    private readonly PREFIX_BEFORE_JSON_REGEX = /\[UnityCrossThreadLogger\]==>[^{]*/;
 
     public match(line: string) {
         return this.IS_MESSAGE_FROM_SERVER_REGEX.test(line);
@@ -38,9 +38,9 @@ export class FromServerMessageParser
 
     private parseRequest(message: Record<string, unknown>) {
         try {
-            if ('request' in message) {
+            if ("request" in message) {
                 message.request = JSON.parse(message.request as string);
-                if ('Payload' in (message.request as Record<string, unknown>)) {
+                if ("Payload" in (message.request as Record<string, unknown>)) {
                     (message.request as Record<string, unknown>).Payload =
                         JSON.parse((message.request as Record<string, unknown>).Payload as string);
                 }

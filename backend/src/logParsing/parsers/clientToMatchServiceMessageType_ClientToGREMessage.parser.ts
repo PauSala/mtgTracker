@@ -1,4 +1,4 @@
-import { CustomMessage } from "../types";
+import { CustomMessage } from "../../domain/custom-message";
 import { MessageParser } from "./messageparser";
 
 export class ClientToMatchServiceMessageType_ClientToGREMessageParser
