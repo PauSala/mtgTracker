@@ -28,6 +28,7 @@ export class LineParser {
 
     async parseLine(line: string) {
 
+
         if (this.fromServerMessageParser.match(line)) {
             const message = this.fromServerMessageParser.getMessage(line, this.currentMatchId);
             if (message) {
@@ -106,7 +107,7 @@ export class LineParser {
         return this.store.toArray();
     }
 
-    getLine() {
+    dequeueLine() {
         return this.store.dequeue();
     }
 }

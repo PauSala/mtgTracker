@@ -6,8 +6,9 @@ import { LineParser } from "./line-parser";
 import { CustomMessage } from "./custom-message";
 import { LinePolling } from "./line-polling";
 import { getLogFilePath } from "./get-log-path";
-import { emitOnFileChange } from "./emit-on-file-change";
+//import { emitOnFileChange } from "./emit-on-file-change";
 import { Queue } from "./queue";
+import { Tail } from "tail";
 
 export class LogWatcher {
 
@@ -17,41 +18,37 @@ export class LogWatcher {
     constructor(private path: string, private lineParser: LineParser) { }
 
     async init() {
-        emitOnFileChange(this.path, this.fileChangedEmitter);
+        const tail = new Tail(this.path, { fromBeginning: true, follow: true });
+        tail.on("line", (line) => console.log(line));
+        /* emitOnFileChange(this.path, this.fileChangedEmitter);
         const parsedLog = await this.parseLogFromStart();
-        parsedLog.lines.forEach(() => {
-            const line = this.lineParser.getLine();
-            console.log(line);
+        const lines: (CustomMessage<Record<string, unknown>> | undefined)[] = [];
+        parsedLog.forEach(() => {
+            const line = this.lineParser.dequeueLine();
+            lines.push(line);
         });
-        console.log("\n\n\n\n\n\n\n\n\nEnd line by line processing");
-        this.parseLineByLine(parsedLog.bytesRead);
+        console.log("\nEnd line by line processing");
+        this.parseLineByLine(statSync(this.path).size); */
 
     }
 
     private async parseLogFromStart() {
-        let bytesRead = 0;
 
         if (!existsSync(this.path)) {
-            return { lines: new Queue<CustomMessage<Record<string, unknown>>>().toArray(), bytesRead };
+            return new Queue<CustomMessage<Record<string, unknown>>>().toArray();
         }
-
         const rl = createInterface(
             {
                 input: createReadStream(this.path),
                 crlfDelay: Infinity
             }
         );
-
         rl.on("line", (line) => {
-            bytesRead += Buffer.byteLength(line);
             this.lineParser.parseLine(line);
         });
-
         await once(rl, "close");
         console.log("Reading log line by line done");
-        const used = process.memoryUsage().heapUsed / 1024 / 1024;
-        console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
-        return { lines: this.lineParser.getAllLines(), bytesRead };
+        return this.lineParser.getAllLines();
     }
 
     private parseLineByLine(bytesReaded: number) {
@@ -69,7 +66,7 @@ export class LogWatcher {
             this.lineParser.parseLine(line)
         });
         const fetchingInterval = setInterval(() => {
-            const line = this.lineParser.getLine();
+            const line = this.lineParser.dequeueLine();
             if (line) {
                 console.log(line);
             }

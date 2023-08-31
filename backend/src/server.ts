@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { LogWatcher } from "./logParsing/log-wathcer";
+import { LogWatcher } from "./logParsing/log-watcher";
 import { getLogFilePath } from "./logParsing/get-log-path";
 import { LineParser } from "./logParsing/line-parser";
 import { Queue } from "./logParsing/queue";
