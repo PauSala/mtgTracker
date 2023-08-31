@@ -1,4 +1,4 @@
-import { Annotation, GameInfo, GameObject, GameStateMessage, Zone } from "./step.types";
+import { Annotation, GameInfo, GameObject, GameStateMessage, Zone } from "../game-state-message";
 
 export type GameState = {
     gameObjects: GameObject[];
@@ -46,7 +46,7 @@ export function updateGameState(
             .forEach(zone => {
                 gameState.zones = gameState.zones
                     .filter(src_zone => src_zone.zoneId !== zone.zoneId);
-                let newZone = {
+                const newZone = {
                     ...zone,
                     mappedInstances: zone.objectInstanceIds?.map(i => {
                         const arena_id = gameState.gameObjects.find(ob => ob.instanceId === i)?.grpId;

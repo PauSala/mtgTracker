@@ -12,8 +12,8 @@ import {
     MatchGameRoomStateMessageMongoDbModel
 } from "./infrastructure/mongoDb/messagesMongoDb";
 import { Document, Types } from "mongoose";
-import { GameInfo, GameStateMessage } from "./lib/gamePlay/step.types";
-import { GameState, updateGameState } from "./lib/gamePlay/stepProcessor";
+import { GameInfo, GameStateMessage } from "./domain/game-state-message";
+import { GameState, updateGameState } from "./domain/gamePlay/stepProcessor";
 import { getCard, getHability } from "./infrastructure/sqliteDb/sqliteCardRepository";
 
 

@@ -1,12 +1,12 @@
 import { appendFile } from "fs";
+import { CustomMessage } from "../domain/custom-message";
+import { resolve } from "path";
+import { Queue } from "./queue";
 import { ClientToMatchServiceMessageType_ClientToGREMessageParser } from "./parsers/clientToMatchServiceMessageType_ClientToGREMessage.parser";
 import { FromClientMessageParser } from "./parsers/fromClientMessage.parser";
 import { FromServerMessageParser } from "./parsers/fromServerMessage.parser";
 import { GreToClientMessageParser } from "./parsers/greToClientEvent.parser";
 import { MatchGameRoomStateChangedEventMessageParser } from "./parsers/matchGameRoomStateChangedEventMessage.parser";
-import { CustomMessage } from "./types";
-import { resolve } from "path";
-import { Queue } from "./queue";
 
 export class LineParser {
 

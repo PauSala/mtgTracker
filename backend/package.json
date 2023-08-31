@@ -5,7 +5,7 @@
   "main": "dist/src/server.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "copy-files": "cp -r ./src/public/ ./dist/src && cp -r ./src/data/ ./dist/src && cp .env ./dist/.env ",
+    "copy-files": "cp -r ./src/data/ ./dist/src && cp .env ./dist/.env ",
     "build": "npm run clean && npx tsc && npm run copy-files",
     "start": "npm run build && node .",
     "dev": "ts-node-dev ./src/server.ts",

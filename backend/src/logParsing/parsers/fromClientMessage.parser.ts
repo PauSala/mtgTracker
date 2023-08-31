@@ -8,7 +8,7 @@ export class FromClientMessageParser
     private readonly IS_MESSAGE_FROM_CLIENT_REGEX = /<== /;
 
     //matches until json start, therefore, next char index is the JSON start
-    private readonly PREFIX_BEFORE_UUID = /<== [^\(]*/;
+    private readonly PREFIX_BEFORE_UUID = /<== [^(]*/;
 
     private currentMessageType: string = "";
 

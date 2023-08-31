@@ -3,10 +3,10 @@ import { createInterface } from "readline";
 import { createReadStream, existsSync } from "fs";
 import EventEmitter, { once } from "events";
 import { LineParser } from "./line-parser";
-import { CustomMessage } from "./types";
-import { LinePolling } from "./watcher/tail";
-import { getLogFilePath } from "./getLogPath";
-import { emitOnFileChange } from "./watcher/watch";
+import { CustomMessage } from "../domain/custom-message";
+import { LinePolling } from "./line-polling";
+import { getLogFilePath } from "./get-log-path";
+import { emitOnFileChange } from "./emit-on-file-change";
 import { Queue } from "./queue";
 
 export class LogWatcher {
@@ -19,7 +19,11 @@ export class LogWatcher {
     async init() {
         emitOnFileChange(this.path, this.fileChangedEmitter);
         const parsedLog = await this.parseLogFromStart();
-        //parsedLog.lines.forEach(line => console.log(line));
+        parsedLog.lines.forEach(() => {
+            const line = this.lineParser.getLine();
+            console.log(line);
+        });
+        console.log("\n\n\n\n\n\n\n\n\nEnd line by line processing");
         this.parseLineByLine(parsedLog.bytesRead);
 
     }

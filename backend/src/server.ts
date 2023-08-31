@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import { LogWatcher } from "./lib/log-wathcer";
-import { getLogFilePath } from "./lib/getLogPath";
-import { LineParser } from "./lib/line-parser";
-import { Queue } from "./lib/queue";
+import { LogWatcher } from "./logParsing/log-wathcer";
+import { getLogFilePath } from "./logParsing/get-log-path";
+import { LineParser } from "./logParsing/line-parser";
+import { Queue } from "./logParsing/queue";
 //import { App } from "./app";
 dotenv.config();
 
