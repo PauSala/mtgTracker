@@ -1,0 +1,162 @@
+{
+    "Summary": {
+        "DeckId": "5ae815ef-907d-4004-ac35-79d0bd1fba96",
+        "Mana": "BG",
+        "Name": "Golgari",
+        "Attributes": [
+            {
+                "name": "Version",
+                "value": "11"
+            },
+            {
+                "name": "TileID",
+                "value": "84511"
+            },
+            {
+                "name": "LastPlayed",
+                "value": "2023-09-04T18: 57: 39.6024165+02: 00"
+            },
+            {
+                "name": "LastUpdated",
+                "value": "2023-09-04T19: 05: 50.0795868+02: 00"
+            },
+            {
+                "name": "IsFavorite",
+                "value": "false"
+            },
+            {
+                "name": "Format",
+                "value": "Standard"
+            }
+        ],
+        "Description": null,
+        "DeckTileId": 84511,
+        "DeckArtId": 437322,
+        "IsCompanionValid": false,
+        "FormatLegalities": {},
+        "PreferredCosmetics": {
+            "Avatar": null,
+            "Sleeve": null,
+            "Pet": null,
+            "Emotes": []
+        },
+        "DeckValidationSummaries": [],
+        "UnownedCards": {},
+        "NetDeckFolderId": null,
+        "IsNetDeck": false
+    },
+    "Deck": {
+        "MainDeck": [
+            {
+                "cardId": 84511,
+                "quantity": 2
+            },
+            {
+                "cardId": 82394,
+                "quantity": 8
+            },
+            {
+                "cardId": 78570,
+                "quantity": 2
+            },
+            {
+                "cardId": 82586,
+                "quantity": 2
+            },
+            {
+                "cardId": 82139,
+                "quantity": 2
+            },
+            {
+                "cardId": 82392,
+                "quantity": 6
+            },
+            {
+                "cardId": 80248,
+                "quantity": 2
+            },
+            {
+                "cardId": 78446,
+                "quantity": 2
+            },
+            {
+                "cardId": 82141,
+                "quantity": 2
+            },
+            {
+                "cardId": 83808,
+                "quantity": 2
+            },
+            {
+                "cardId": 82222,
+                "quantity": 4
+            },
+            {
+                "cardId": 80310,
+                "quantity": 2
+            },
+            {
+                "cardId": 82159,
+                "quantity": 3
+            },
+            {
+                "cardId": 80302,
+                "quantity": 3
+            },
+            {
+                "cardId": 79066,
+                "quantity": 3
+            },
+            {
+                "cardId": 79085,
+                "quantity": 4
+            },
+            {
+                "cardId": 82751,
+                "quantity": 4
+            },
+            {
+                "cardId": 79706,
+                "quantity": 1
+            },
+            {
+                "cardId": 79718,
+                "quantity": 1
+            },
+            {
+                "cardId": 83858,
+                "quantity": 3
+            },
+            {
+                "cardId": 84362,
+                "quantity": 2
+            }
+        ],
+        "ReducedSideboard": [
+            {
+                "cardId": 77508,
+                "quantity": 3
+            }
+        ],
+        "Sideboard": [
+            {
+                "cardId": 77508,
+                "quantity": 3
+            }
+        ],
+        "CommandZone": [],
+        "Companions": [],
+        "CardSkins": [
+            {
+                "GrpId": 82141,
+                "CCV": "DA"
+            }
+        ],
+        "DoPreferReducedSideboard": false
+    },
+    "ActionType": 6
+}
+{
+    "id": "f7ed99e4-4ed3-4056-b6ea-c490dd25bc10",
+    "request": "{\"Type\":406,\"TransId\":\"f7ed99e4-4ed3-4056-b6ea-c490dd25bc10\",\"Payload\":\"{\\\"Summary\\\":{\\\"DeckId\\\":\\\"5ae815ef-907d-4004-ac35-79d0bd1fba96\\\",\\\"Mana\\\":\\\"BG\\\",\\\"Name\\\":\\\"Golgari\\\",\\\"Attributes\\\":[{\\\"name\\\":\\\"Version\\\",\\\"value\\\":\\\"11\\\"},{\\\"name\\\":\\\"TileID\\\",\\\"value\\\":\\\"84511\\\"},{\\\"name\\\":\\\"LastPlayed\\\",\\\"value\\\":\\\"\\\\\\\"2023-09-04T18:57:39.6024165+02:00\\\\\\\"\\\"},{\\\"name\\\":\\\"LastUpdated\\\",\\\"value\\\":\\\"\\\\\\\"2023-09-04T19:05:50.0795868+02:00\\\\\\\"\\\"},{\\\"name\\\":\\\"IsFavorite\\\",\\\"value\\\":\\\"false\\\"},{\\\"name\\\":\\\"Format\\\",\\\"value\\\":\\\"Standard\\\"}],\\\"Description\\\":null,\\\"DeckTileId\\\":84511,\\\"DeckArtId\\\":437322,\\\"IsCompanionValid\\\":false,\\\"FormatLegalities\\\":{},\\\"PreferredCosmetics\\\":{\\\"Avatar\\\":null,\\\"Sleeve\\\":null,\\\"Pet\\\":null,\\\"Emotes\\\":[]},\\\"DeckValidationSummaries\\\":[],\\\"UnownedCards\\\":{},\\\"NetDeckFolderId\\\":null,\\\"IsNetDeck\\\":false},\\\"Deck\\\":{\\\"MainDeck\\\":[{\\\"cardId\\\":84511,\\\"quantity\\\":2},{\\\"cardId\\\":82394,\\\"quantity\\\":8},{\\\"cardId\\\":78570,\\\"quantity\\\":2},{\\\"cardId\\\":82586,\\\"quantity\\\":2},{\\\"cardId\\\":82139,\\\"quantity\\\":2},{\\\"cardId\\\":82392,\\\"quantity\\\":6},{\\\"cardId\\\":80248,\\\"quantity\\\":2},{\\\"cardId\\\":78446,\\\"quantity\\\":2},{\\\"cardId\\\":82141,\\\"quantity\\\":2},{\\\"cardId\\\":83808,\\\"quantity\\\":2},{\\\"cardId\\\":82222,\\\"quantity\\\":4},{\\\"cardId\\\":80310,\\\"quantity\\\":2},{\\\"cardId\\\":82159,\\\"quantity\\\":3},{\\\"cardId\\\":80302,\\\"quantity\\\":3},{\\\"cardId\\\":79066,\\\"quantity\\\":3},{\\\"cardId\\\":79085,\\\"quantity\\\":4},{\\\"cardId\\\":82751,\\\"quantity\\\":4},{\\\"cardId\\\":79706,\\\"quantity\\\":1},{\\\"cardId\\\":79718,\\\"quantity\\\":1},{\\\"cardId\\\":83858,\\\"quantity\\\":3},{\\\"cardId\\\":84362,\\\"quantity\\\":2}],\\\"ReducedSideboard\\\":[{\\\"cardId\\\":77508,\\\"quantity\\\":3}],\\\"Sideboard\\\":[{\\\"cardId\\\":77508,\\\"quantity\\\":3}],\\\"CommandZone\\\":[],\\\"Companions\\\":[],\\\"CardSkins\\\":[{\\\"GrpId\\\":82141,\\\"CCV\\\":\\\"DA\\\"}],\\\"DoPreferReducedSideboard\\\":false},\\\"ActionType\\\":6}\"}"
+}

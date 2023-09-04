@@ -3,6 +3,7 @@ import { LogWatcher } from "./logParsing/log-watcher";
 import { getLogFilePath } from "./logParsing/get-log-path";
 import { LineParser } from "./logParsing/line-parser";
 import { Queue } from "./logParsing/queue";
+import { MongoDbConnection } from "./infrastructure/mongoDb/mongoDbConnection";
 //import { App } from "./app";
 dotenv.config();
 
@@ -14,6 +15,8 @@ const main = async () => {
     if (!port) {
         return Promise.reject("Error: No port provided");
     }
+    const mongoConnection = new MongoDbConnection();
+    await mongoConnection.connect();
     const logWatcher = new LogWatcher(getLogFilePath(), new LineParser(new Queue()));
     logWatcher.init();
     /*     const application = new App();

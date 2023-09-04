@@ -1,0 +1,62 @@
+{
+    "transactionId": "5c686397-9c49-4009-a0c1-439fda892135",
+    "requestId": 2,
+    "timestamp": "1692209486711",
+    "matchGameRoomStateChangedEvent": {
+        "gameRoomInfo": {
+            "gameRoomConfig": {
+                "reservedPlayers": [
+                    {
+                        "userId": "FCEY2R7I7JB6POXDL3KAIBGDJ4",
+                        "playerName": "pythonBCN#29465",
+                        "systemSeatId": 1,
+                        "teamId": 1,
+                        "connectionInfo": {
+                            "connectionState": "ConnectionState_Open"
+                        },
+                        "courseId": "Avatar_Basic_Raffine_SNC",
+                        "sessionId": "ce892d54-85f7-448a-814b-9e01e53e00ad",
+                        "platformId": "Windows",
+                        "eventId": "Traditional_Ladder"
+                    },
+                    {
+                        "userId": "F97D8C20937C4FEF",
+                        "playerName": "Rockspell#13596",
+                        "systemSeatId": 2,
+                        "teamId": 2,
+                        "connectionInfo": {
+                            "connectionState": "ConnectionState_Open"
+                        },
+                        "courseId": "Avatar_Basic_Fblthp_OpenBeta",
+                        "sessionId": "9bea9c27-84e4-4ab1-b01a-5af897012efd",
+                        "platformId": "Windows",
+                        "eventId": "Traditional_Ladder"
+                    }
+                ],
+                "matchId": "00109e5b-4ffd-42f3-adae-571014377fd9",
+                "greConfig": {
+                    "gameStateRedactorConfiguration": {
+                        "enableRedaction": true,
+                        "enableForceDiff": true
+                    },
+                    "clipsConfiguration": {},
+                    "checkpointConfiguration": {}
+                },
+                "greHostLoggerLevel": "Info",
+                "joinRoomTimeoutSecs": 60,
+                "playerDisconnectTimeoutSecs": 30
+            },
+            "stateType": "MatchGameRoomStateType_Playing",
+            "players": [
+                {
+                    "userId": "FCEY2R7I7JB6POXDL3KAIBGDJ4",
+                    "systemSeatId": 1
+                },
+                {
+                    "userId": "F97D8C20937C4FEF",
+                    "systemSeatId": 2
+                }
+            ]
+        }
+    }
+}

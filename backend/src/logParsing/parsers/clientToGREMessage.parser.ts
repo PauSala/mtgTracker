@@ -1,7 +1,7 @@
 import { CustomMessage } from "../custom-message";
 import { MessageParser } from "./messageparser";
 
-export class ClientToMatchServiceMessageType_ClientToGREMessageParser
+export class ClientToGREMessageParser
     implements MessageParser<Record<string, unknown>>{
 
     //TO-DO: maybe ClientToMatchServiceMessageType_ClientToGREUIMessage are relevant too, for now let's ignore it;

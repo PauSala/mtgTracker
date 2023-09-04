@@ -1,0 +1,1389 @@
+{
+    "Courses": [
+        {
+            "CourseId": "6f981d65-f61b-4bac-b01b-11ff32d50c88",
+            "InternalEventName": "Historic_Ladder",
+            "CurrentModule": "CreateMatch",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "9723094b-dcd1-4640-9822-97cc890c3284",
+                "Mana": "G",
+                "Name": "monoGreen",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "77316"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2021-11-11T19:08:10.4478579+01:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2021-11-06T15:25:24.9302248\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "TraditionalStandard"
+                    }
+                ],
+                "DeckTileId": 77316,
+                "DeckArtId": 0,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {},
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 75223,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 77316,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 73402,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 73396,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78570,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75232,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 73393,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75206,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75214,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 77307,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75336,
+                        "quantity": 21
+                    },
+                    {
+                        "cardId": 75305,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 73420,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75246,
+                        "quantity": 2
+                    }
+                ],
+                "ReducedSideboard": [
+                    {
+                        "cardId": 77536,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78549,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 75244,
+                        "quantity": 1
+                    }
+                ],
+                "Sideboard": [
+                    {
+                        "cardId": 77536,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78549,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 75244,
+                        "quantity": 1
+                    }
+                ],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": []
+            },
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "91d136fd-9737-42df-a49f-97e6394bb721",
+            "InternalEventName": "Historic_Play",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "37287540-c4f9-439e-930d-fa89ba5b1963",
+                "Mana": "G",
+                "Name": "Nuevo mazo",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "75222"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2022-01-18T22:29:31.825922+01:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2022-01-18T22:25:14.7373224\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Historic"
+                    }
+                ],
+                "DeckTileId": 75222,
+                "DeckArtId": 0,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {},
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 75222,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 81078,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75336,
+                        "quantity": 22
+                    },
+                    {
+                        "cardId": 77307,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 77316,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 71961,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 79040,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 70318,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 71229,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 79962,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 73396,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 75232,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75206,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75240,
+                        "quantity": 3
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": []
+            },
+            "CurrentLosses": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "65cb90ae-8fd9-47b0-8a8d-fff5cd895eea",
+            "InternalEventName": "Alchemy_Ladder",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "efb8b98a-7edc-45f8-b90a-e8a9da4f64b8",
+                "Mana": "RG",
+                "Name": "Mazo importado",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "79096"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2022-01-28T18:03:05.925788+01:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2022-01-28T16:46:47.3551163\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Alchemy"
+                    }
+                ],
+                "DeckTileId": 79096,
+                "DeckArtId": 0,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {},
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 79096,
+                        "quantity": 9
+                    },
+                    {
+                        "cardId": 79095,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 73476,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78636,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 77364,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78995,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79962,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78596,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 77316,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78507,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78613,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79959,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78987,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79028,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78615,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 77307,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75312,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 73375,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79947,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 78565,
+                        "quantity": 1
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": []
+            },
+            "CurrentLosses": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "74e4f1c3-b053-4173-b7b3-148686bde59e",
+            "InternalEventName": "Alchemy_Play",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "86024a66-8fc0-4747-89bc-79a3895c791f",
+                "Mana": "RG",
+                "Name": "Grull",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "83949"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-03-20T12:38:51.4423718+01:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-03-03T12:15:19.0940129+01:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Standard"
+                    }
+                ],
+                "DeckTileId": 83949,
+                "DeckArtId": 431443,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 83949,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82302,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78636,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82619,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 83981,
+                        "quantity": 8
+                    },
+                    {
+                        "cardId": 83980,
+                        "quantity": 5
+                    },
+                    {
+                        "cardId": 83859,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 83866,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 83907,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 82696,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78940,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 83867,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 83858,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79598,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 83890,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78981,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82234,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 83910,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82625,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79061,
+                        "quantity": 3
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": [
+                    {
+                        "GrpId": 79598,
+                        "CCV": "DA"
+                    }
+                ]
+            },
+            "CurrentWins": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "929706ac-298b-4a25-a0e9-b8b865b13b75",
+            "InternalEventName": "Play",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "de303a0b-5d67-4a07-9d61-cd3b2b064aff",
+                "Mana": "WU",
+                "Name": "Flash",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "84518"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-07-18T18:33:29.0370567+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-07-18T17:45:34.1916243+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Standard"
+                    }
+                ],
+                "DeckTileId": 84518,
+                "DeckArtId": 429377,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 84518,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 87578,
+                        "quantity": 5
+                    },
+                    {
+                        "cardId": 87580,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79464,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 84315,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78850,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82081,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82558,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78828,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 77497,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78778,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 84279,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82528,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82295,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79708,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79711,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78629,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 83958,
+                        "quantity": 4
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": [
+                    {
+                        "GrpId": 84315,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 82081,
+                        "CCV": "DA"
+                    }
+                ]
+            },
+            "CurrentLosses": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "f4e9a409-0ab6-49a1-9356-9c1aa8a888c0",
+            "InternalEventName": "Constructed_BestOf3",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "46208e8e-44b5-4b4f-b5f3-d14f06f00b50",
+                "Mana": "WRG",
+                "Name": "bum",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "85100"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-08-02T12:50:51.919303+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-08-02T11:41:44.0728692+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Standard"
+                    }
+                ],
+                "DeckTileId": 85100,
+                "DeckArtId": 433823,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 85100,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 87578,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78635,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 87586,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 80401,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 83957,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82302,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82746,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82744,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 84296,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 80344,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 83733,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78345,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78820,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78798,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 80299,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78322,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 84253,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 84273,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 80339,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78571,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78828,
+                        "quantity": 3
+                    }
+                ],
+                "ReducedSideboard": [
+                    {
+                        "cardId": 83734,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79464,
+                        "quantity": 3
+                    }
+                ],
+                "Sideboard": [
+                    {
+                        "cardId": 83734,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79464,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82084,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 82266,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82746,
+                        "quantity": 1
+                    }
+                ],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": [
+                    {
+                        "GrpId": 83733,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 78345,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 78820,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 80299,
+                        "CCV": "DA"
+                    }
+                ]
+            },
+            "CurrentWins": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "c5a48e84-bd9b-4297-9533-a4f5c64a825d",
+            "InternalEventName": "Explorer_Ladder",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "9d4da90d-7bf6-43ef-a2d3-4c952e26fd5b",
+                "Mana": "G",
+                "Name": "Mazo importado",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "67440"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-08-10T14:47:43.9053164+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-06-09T16:37:40.3516522+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Explorer"
+                    }
+                ],
+                "DeckTileId": 67440,
+                "DeckArtId": 0,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 67440,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82394,
+                        "quantity": 20
+                    },
+                    {
+                        "cardId": 75211,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82219,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 75346,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75245,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 54163,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75223,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 72451,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 80299,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 77281,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82212,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75246,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 71961,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 73966,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 37456,
+                        "quantity": 1
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": []
+            },
+            "CurrentLosses": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "94b3863d-0186-497e-9c8b-73f027074244",
+            "InternalEventName": "Traditional_Ladder",
+            "CurrentModule": "CreateMatch",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "0830c85b-06a8-4a47-bf40-792b7470d33d",
+                "Mana": "W",
+                "Name": "Humans",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "78820"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-08-16T20:11:12.9191799+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-08-16T20:10:53.3194243+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Standard"
+                    }
+                ],
+                "DeckTileId": 78820,
+                "DeckArtId": 421142,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 78820,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78352,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78798,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78322,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78331,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82054,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82495,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 85057,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 78354,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82507,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 84273,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78345,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79708,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82390,
+                        "quantity": 19
+                    },
+                    {
+                        "cardId": 82752,
+                        "quantity": 3
+                    }
+                ],
+                "ReducedSideboard": [
+                    {
+                        "cardId": 78828,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79464,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 84253,
+                        "quantity": 1
+                    }
+                ],
+                "Sideboard": [
+                    {
+                        "cardId": 79464,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78828,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 84253,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 83727,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82084,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 80162,
+                        "quantity": 2
+                    }
+                ],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": [
+                    {
+                        "GrpId": 78820,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 82507,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 78345,
+                        "CCV": "DA"
+                    },
+                    {
+                        "GrpId": 82752,
+                        "CCV": "RETRO"
+                    }
+                ]
+            },
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "bcd33a6f-0697-4944-9222-2f24fb264267",
+            "InternalEventName": "Explorer_Play",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "9d4da90d-7bf6-43ef-a2d3-4c952e26fd5b",
+                "Mana": "G",
+                "Name": "Mazo importado",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "67440"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-08-13T11:50:43.9877227+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-06-09T16:37:40.3516522+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Explorer"
+                    }
+                ],
+                "DeckTileId": 67440,
+                "DeckArtId": 0,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 67440,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82394,
+                        "quantity": 20
+                    },
+                    {
+                        "cardId": 75211,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82219,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 75346,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75245,
+                        "quantity": 1
+                    },
+                    {
+                        "cardId": 54163,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 75223,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 72451,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 80299,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 77281,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82212,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 75246,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 71961,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 73966,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 37456,
+                        "quantity": 1
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": []
+            },
+            "CurrentWins": 1,
+            "CardPool": [],
+            "CardStyles": []
+        },
+        {
+            "CourseId": "151e6630-d875-4503-b0ba-f22d19e372b9",
+            "InternalEventName": "Ladder",
+            "CurrentModule": "Complete",
+            "ModulePayload": "",
+            "CourseDeckSummary": {
+                "DeckId": "61fa09ab-14fe-40c1-bdb8-4b7056c01eb4",
+                "Mana": "W",
+                "Name": "MonoWhiteCtrl",
+                "Attributes": [
+                    {
+                        "name": "Version",
+                        "value": "11"
+                    },
+                    {
+                        "name": "TileID",
+                        "value": "82088"
+                    },
+                    {
+                        "name": "LastPlayed",
+                        "value": "\"2023-08-16T18:49:54.7401118+02:00\""
+                    },
+                    {
+                        "name": "LastUpdated",
+                        "value": "\"2023-08-16T17:18:48.9638815+02:00\""
+                    },
+                    {
+                        "name": "IsFavorite",
+                        "value": "false"
+                    },
+                    {
+                        "name": "Format",
+                        "value": "Standard"
+                    }
+                ],
+                "DeckTileId": 82088,
+                "DeckArtId": 428748,
+                "FormatLegalities": {},
+                "PreferredCosmetics": {
+                    "Emotes": []
+                },
+                "DeckValidationSummaries": [],
+                "UnownedCards": {}
+            },
+            "CourseDeck": {
+                "MainDeck": [
+                    {
+                        "cardId": 82088,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 84295,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 80161,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78367,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 83738,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 78828,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 82495,
+                        "quantity": 4
+                    },
+                    {
+                        "cardId": 79708,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 79455,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 82515,
+                        "quantity": 3
+                    },
+                    {
+                        "cardId": 78345,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82510,
+                        "quantity": 2
+                    },
+                    {
+                        "cardId": 82390,
+                        "quantity": 24
+                    },
+                    {
+                        "cardId": 79464,
+                        "quantity": 4
+                    }
+                ],
+                "ReducedSideboard": [],
+                "Sideboard": [],
+                "CommandZone": [],
+                "Companions": [],
+                "CardSkins": [
+                    {
+                        "GrpId": 78345,
+                        "CCV": "DA"
+                    }
+                ]
+            },
+            "CurrentLosses": 1,
+            "CardPool": [],
+            "CardStyles": []
+        }
+    ]
+}

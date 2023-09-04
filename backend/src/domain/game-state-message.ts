@@ -130,7 +130,7 @@ export type GameObject = {
         damageOrdered: boolean;
     };
     defense?: { value: number };
-    hasSummoningSickness: boolean;
+    hasSummoningSickness?: boolean;
     blockState?: string;
     blockInfo?: {
         attackerIds: Array<number>;
@@ -174,6 +174,31 @@ export type GameInfo = {
     mulliganType: string;
 }
 
+export type TurnInfo = {
+    activePlayer?: number;
+    priorityPlayer?: number;
+    decisionPlayer?: number;
+    phase?: string;
+    step?: string;
+    turnNumber?: number;
+    nextPhase?: string;
+    nextStep?: string;
+
+}
+
+export type Player = {
+    lifeTotal: number;
+    systemSeatNumber: number;
+    maxHandSize: number;
+    turnNumber: number;
+    teamId: number;
+    timerIds: Array<number>;
+    controllerSeatId: number;
+    controllerType: string,
+    pendingMessageType?: string,
+    startingLifeTotal: number;
+}
+
 export type GameStateMessage = {
     gameStateId: number;
     msgId: number;
@@ -181,29 +206,8 @@ export type GameStateMessage = {
         type: string | "GameStateType_Full" | "GameStateType_Diff";
         gameStateId: number;
         gameInfo: GameInfo;
-        players?: {
-            lifeTotal: number;
-            systemSeatNumber: number;
-            maxHandSize: number;
-            turnNumber: number;
-            teamId: number;
-            timerIds: Array<number>;
-            controllerSeatId: number;
-            controllerType: string,
-            pendingMessageType?: string,
-            startingLifeTotal: number;
-        }[];
-        turnInfo?: {
-            activePlayer?: number;
-            priorityPlayer?: number;
-            decisionPlayer?: number;
-            phase?: string;
-            step?: string;
-            turnNumber?: number;
-            nextPhase?: string;
-            nextStep?: string;
-
-        };
+        players?: Player[];
+        turnInfo?: TurnInfo;
         zones?: Zone[];
         gameObjects?: GameObject[];
         annotations?: Annotation[];

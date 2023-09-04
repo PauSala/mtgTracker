@@ -2,7 +2,7 @@ import { appendFile } from "fs";
 import { CustomMessage } from "./custom-message";
 import { resolve } from "path";
 import { Queue } from "./queue";
-import { ClientToMatchServiceMessageType_ClientToGREMessageParser } from "./parsers/clientToMatchServiceMessageType_ClientToGREMessage.parser";
+import { ClientToGREMessageParser } from "./parsers/clientToGREMessage.parser";
 import { FromClientMessageParser } from "./parsers/fromClientMessage.parser";
 import { FromServerMessageParser } from "./parsers/fromServerMessage.parser";
 import { GreToClientMessageParser } from "./parsers/greToClientEvent.parser";
@@ -22,7 +22,7 @@ export class LineParser {
     private fromServerMessageParser = new FromServerMessageParser();
     private fromClientMessageParser = new FromClientMessageParser();
     private greToClientMessageParser = new GreToClientMessageParser();
-    private clientToMatchServiceMessageType_ClientToGREMessageParser = new ClientToMatchServiceMessageType_ClientToGREMessageParser();
+    private clientToMatchServiceMessageType_ClientToGREMessageParser = new ClientToGREMessageParser();
     private matchGameRoomStateChangedEventMessageParser = new MatchGameRoomStateChangedEventMessageParser();
 
 
@@ -107,7 +107,11 @@ export class LineParser {
         return this.store.toArray();
     }
 
-    dequeueLine() {
+    private dequeueLine() {
         return this.store.dequeue();
+    }
+
+    next() {
+        return this.dequeueLine();
     }
 }
