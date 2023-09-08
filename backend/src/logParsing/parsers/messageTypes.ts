@@ -24,7 +24,8 @@ export type MatchGameRoomStateChangedEvent = {
             players?:
             {
                 userId: string,
-                systemSeatId: number
+                systemSeatId: number,
+                playerName: string
             }[],
             finalMatchResult?: {
                 matchId: string,

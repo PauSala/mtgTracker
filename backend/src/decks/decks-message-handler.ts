@@ -1,6 +1,6 @@
 import { CustomMessage } from "../logParsing/custom-message";
 import { FromClientMessageParser } from "../logParsing/parsers/fromClientMessage.parser";
-import { DeckRepository } from "./messageRepository";
+import { DeckRepository } from "../domain/messageRepository";
 export type DeckStringAttributes = "Version" | "Format";
 export type DeckDateAttributes = | "LastPlayed" | "LastUpdated";
 export type DeckCard = { cardId: number, quantity: number };
@@ -25,14 +25,14 @@ export class DeckMessageHandler {
 
     constructor(private messageRepository: DeckRepository) { }
 
-    isDeckMessage(message: CustomMessage<Record<string, unknown>>) {
+    isAllDecksMessage(message: CustomMessage<Record<string, unknown>>) {
 
         return message.name === DeckMessageHandler.MESSAGE_NAME
             && message.type === FromClientMessageParser.MESSAGE_TYPE
             && message.message.Courses;
     }
 
-    async saveDecks(message: CustomMessage<Record<string, unknown>>) {
+    async updateDecks(message: CustomMessage<Record<string, unknown>>) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decks: Deck[] = (message.message.Courses as Array<any>)
             .filter(c => c.CurrentModule === "Complete")

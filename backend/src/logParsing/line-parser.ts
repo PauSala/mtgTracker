@@ -49,6 +49,7 @@ export class LineParser {
             return;
         }
         if (this.greToClientMessageParser.match(line)) {
+            this.greToClientMessageParser.parseUserId(line);
             this.isReadingGreToClientMessageParser = true;
             return
         }

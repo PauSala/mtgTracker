@@ -2,7 +2,7 @@
 import express, { Application, Request, Response, json } from "express";
 import * as http from "http";
 import cors from "cors";
-import { MongoDbConnection } from "./infrastructure/mongoDb/mongoDbConnection";
+//import { MongoDbConnection } from "./infrastructure/mongoDb/mongoDbConnection";
 import {
     GreToClientMessageMongoDbModel,
     IMessage,
@@ -15,6 +15,9 @@ import { Document, Types } from "mongoose";
 import { GameInfo, GameStateMessage } from "./domain/game-state-message";
 import { GameState, updateGameState } from "./domain/gamePlay/stepProcessor";
 import { getCard, getHability } from "./infrastructure/sqliteDb/sqliteCardRepository";
+import { RegisterRoutes } from "./router/routes";
+import router from "./router/router";
+import { GameMessageHandler } from "./games/game-message-handler";
 
 
 export class App {
@@ -23,49 +26,20 @@ export class App {
 
 
     constructor() {
+
         this.app = express();
         this.app.use(json());
         this.app.use(cors({
             origin: "*"
         }));
 
-
         this.app.get("/health", (_req: Request, res: Response) => {
             res.status(200).json({ ok: "Sever is running" });
-        });
-
-        this.app.get("/objects", async (req, res) => {
-            const response: any[] = [];
-            /*    parsedLog
-                   .lines
-                   .filter(o => o.type === "GreToClientEvent" && o.matchId === "00109e5b-4ffd-42f3-adae-571014377fd9")
-                   .forEach(o => {
-                       const data = o.message.greToClientEvent.greToClientMessages
-                           .filter((e: any) => e.type === "GREMessageType_GameStateMessage");
-                       if (data.length) {
-                           for (const elem of data) {
-                               response.push(elem);
-                           }
-                       }
-                   }); */
-            return res.json(response);
         });
 
         this.app.get("/gamePlay", async (req, res) => {
             const gameStateMessages: any[] = [];
             const start = performance.now();
-            /* parsedLog
-                .lines
-                .filter(o => o.type === "GreToClientEvent" && o.matchId === "00109e5b-4ffd-42f3-adae-571014377fd9")
-                .forEach(o => {
-                    const data = o.message.greToClientEvent.greToClientMessages
-                        .filter((e: any) => e.type === "GREMessageType_GameStateMessage");
-                    if (data.length) {
-                        for (const elem of data) {
-                            gameStateMessages.push(elem);
-                        }
-                    }
-                }); */
             const states: GameState[] = [];
             let currentGameState: GameState = {
                 gameObjects: [],
@@ -88,13 +62,19 @@ export class App {
             const timeToProcess = (end - start) / 1000.0;
             console.log(`\x1b[36mProcess game took ${timeToProcess} miliseconds \n\x1b[0m`);
             res.json(states);
-
         })
 
         this.app.get("/card/:cardid", async (req, res) => {
             const cardId = req.params.cardid;
             const card = await getCard(cardId);
             return res.json(card);
+        });
+
+        this.app.get("/games", async (req, res) => {
+
+            const items = GameMessageHandler.games.get(GameMessageHandler.games.keys().next().value)
+            const data = await items?.build();
+            return res.json(data);
         })
 
         this.app.get("/ability/:abilityId", async (req, res) => {
@@ -102,14 +82,16 @@ export class App {
             const card = await getHability(abilityId);
             return res.json(card);
         });
+        this.app.use(router);
+        RegisterRoutes(this.app);
 
         this.httpServer = this.getHTTPServer();
     }
 
     public async init(port: string) {
-        const mongoConnection = new MongoDbConnection();
-        await mongoConnection.connect();
-        await this.populateMongo();
+        /*  const mongoConnection = new MongoDbConnection();
+         await mongoConnection.connect();
+         await this.populateMongo(); */
         return this.listen(port);
     }
 

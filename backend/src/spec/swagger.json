@@ -1,0 +1,176 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"DeckStringAttributes": {
+				"type": "string",
+				"enum": [
+					"Version",
+					"Format"
+				]
+			},
+			"DeckDateAttributes": {
+				"type": "string",
+				"enum": [
+					"LastPlayed",
+					"LastUpdated"
+				]
+			},
+			"DeckCard": {
+				"properties": {
+					"quantity": {
+						"type": "number",
+						"format": "double"
+					},
+					"cardId": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"quantity",
+					"cardId"
+				],
+				"type": "object"
+			},
+			"Deck": {
+				"properties": {
+					"attributes": {
+						"items": {
+							"anyOf": [
+								{
+									"properties": {
+										"value": {
+											"type": "string"
+										},
+										"name": {
+											"$ref": "#/components/schemas/DeckStringAttributes"
+										}
+									},
+									"required": [
+										"value",
+										"name"
+									],
+									"type": "object"
+								},
+								{
+									"properties": {
+										"value": {
+											"type": "string",
+											"format": "date-time"
+										},
+										"name": {
+											"$ref": "#/components/schemas/DeckDateAttributes"
+										}
+									},
+									"required": [
+										"value",
+										"name"
+									],
+									"type": "object"
+								}
+							]
+						},
+						"type": "array"
+					},
+					"deckId": {
+						"type": "string"
+					},
+					"mana": {
+						"type": "string"
+					},
+					"mainDeck": {
+						"items": {
+							"$ref": "#/components/schemas/DeckCard"
+						},
+						"type": "array"
+					},
+					"reducedSideboard": {
+						"items": {
+							"$ref": "#/components/schemas/DeckCard"
+						},
+						"type": "array"
+					},
+					"sideboard": {
+						"items": {
+							"$ref": "#/components/schemas/DeckCard"
+						},
+						"type": "array"
+					},
+					"commandZone": {},
+					"companions": {
+						"items": {
+							"$ref": "#/components/schemas/DeckCard"
+						},
+						"type": "array"
+					},
+					"hash": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"attributes",
+					"deckId",
+					"mana",
+					"mainDeck",
+					"reducedSideboard",
+					"sideboard",
+					"commandZone",
+					"companions",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "mrg-tracker",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "Pau Sala"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/decks": {
+			"get": {
+				"operationId": "GetDecks",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Deck"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

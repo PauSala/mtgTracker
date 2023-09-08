@@ -6,7 +6,7 @@ export class MatchGameRoomStateChangedEventMessageParser
     implements MessageParser<MatchGameRoomStateChangedEvent>{
     //matches literal
     private readonly MATCH_REGEX = /MatchGameRoomStateChangedEvent/;
-    private readonly messageType = "MatchGameRoomStateChangedEvent";
+    public static readonly MESSAGE_TYPE = "MatchGameRoomStateChangedEvent";
 
     public match(line: string) {
         return this.MATCH_REGEX.test(line);
@@ -17,8 +17,8 @@ export class MatchGameRoomStateChangedEventMessageParser
             try {
                 const message = JSON.parse(line) as MatchGameRoomStateChangedEvent;
                 return {
-                    type: this.messageType,
-                    name: this.messageType,
+                    type: MatchGameRoomStateChangedEventMessageParser.MESSAGE_TYPE,
+                    name: MatchGameRoomStateChangedEventMessageParser.MESSAGE_TYPE,
                     belongsToMatch: true,
                     matchId: message.matchGameRoomStateChangedEvent.gameRoomInfo.gameRoomConfig.matchId || matchId,
                     message

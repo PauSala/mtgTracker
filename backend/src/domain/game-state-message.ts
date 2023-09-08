@@ -114,8 +114,9 @@ export type GameObject = {
     type: string;
     zoneId: number;
     visibility: Visibility;
-    ownerSeatId: 1;
-    controllerSeatId: 1;
+    ownerSeatId: number;
+    controllerSeatId: number;
+    color?: Array<string>;
     name: number;
     abilities: Array<number>;
     overlayGrpId: number;

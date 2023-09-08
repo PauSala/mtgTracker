@@ -1,4 +1,4 @@
-import { Deck } from "./decks-message";
+import { Deck } from "../decks/decks-message-handler";
 
 export interface DeckRepository {
     save(item: Deck): Promise<void>;

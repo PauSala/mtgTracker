@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import { DeckRepository } from "../../domain/messageRepository";
-import { Deck } from "../../domain/decks-message";
+import { Deck } from "../../decks/decks-message-handler";
+
 
 const Deck = {
 
