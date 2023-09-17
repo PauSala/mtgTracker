@@ -1,4 +1,8 @@
-export type DeckStringAttributes = "Version" | "Format";
+export type DeckStringAttributes =
+  | "Version"
+  | "Format"
+  | "LastPlayed"
+  | "LastUpdated";
 export type DeckDateAttributes = "LastPlayed" | "LastUpdated";
 export type DeckCard = { cardId: number; quantity: number };
 
@@ -12,10 +16,7 @@ import C from "../../../../public/icons/C.svg";
 import { useEffect, useState } from "react";
 
 export interface IDeck {
-  attributes: Array<
-    | { name: DeckStringAttributes; value: string }
-    | { name: DeckDateAttributes; value: Date }
-  >;
+  attributes: Array<{ name: DeckStringAttributes; value: string }>;
   deckId: string;
   versionId: string;
   mana: string;
@@ -65,7 +66,7 @@ export default function DeckSummaryCard({
 }) {
   const [games, setGames] = useState<any[]>([]);
   const deckColors = deck.mana.split("");
-  const backgroundClass = active ? " bg-emerald-800" : " bg-sky-800";
+  const backgroundClass = active ? " bg-cyan-600" : " bg-cyan-800";
 
   useEffect(() => {
     fetch(`http://localhost:3001/games/${deck.deckId}`)
@@ -98,8 +99,8 @@ export default function DeckSummaryCard({
       </div>
       <div className="flex-1  text-center">
         <span className="font-bold">
-          ({games.filter((g) => g.result === "win").length} -{" "}
-          {games.filter((g) => g.result === "lose").length})
+          {games.filter((g) => g.result === "win").length} -{" "}
+          {games.filter((g) => g.result === "lose").length}
         </span>
       </div>
     </div>

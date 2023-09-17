@@ -20,15 +20,22 @@ export class ClientToGREMessageParser
         if (line[0] !== "}") {
             return null
         }
-        const data = JSON.parse(this.currentStringToParse);
-        this.currentStringToParse = "";
-
-        return {
-            name: "ClientToMatchServiceMessageType_ClientToGREMessage",
-            type: "ClientToGREMessage",
-            belongsToMatch: matchId !== null,
-            matchId: matchId,
-            message: data
+        let data = {};
+        try {
+            data = JSON.parse(this.currentStringToParse);
+            return {
+                name: "ClientToMatchServiceMessageType_ClientToGREMessage",
+                type: "ClientToGREMessage",
+                belongsToMatch: matchId !== null,
+                matchId: matchId,
+                message: data
+            }
+        } catch (e) {
+            console.log("Failed to parse Data", this.currentStringToParse);
+            throw new Error(`${e}`);
+        } finally {
+            this.currentStringToParse = "";
         }
+
     }
 }

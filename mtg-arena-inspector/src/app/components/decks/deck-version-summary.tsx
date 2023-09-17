@@ -1,19 +1,32 @@
-import { useState, useEffect } from "react";
 import { IDeck, ColorMap, winRateColor } from "./deck-summary-card";
+import {
+  Popover,
+  PopoverHandler,
+  PopoverContent,
+  Button,
+} from "@material-tailwind/react";
+import { useState } from "react";
+
+import { IoInformationCircle } from "react-icons/io5";
+import VersionInfoPopOver from "./version-info-popover";
 
 export default function DeckVersionSummaryCard({
   deck,
   onclickHandler,
   active,
   games,
+  versions,
 }: {
   deck: IDeck;
   onclickHandler: Function;
   active: boolean;
   games: any[];
+  versions: IDeck[];
 }) {
+  const [showPopover, setShowPopover] = useState(false);
+
   const deckColors = deck.mana.split("");
-  const backgroundClass = active ? " bg-indigo-600" : " bg-indigo-800";
+  const backgroundClass = active ? " bg-cyan-600" : " bg-cyan-800";
 
   const winrate =
     games.filter((g) => g.result === "win").length / games.length || 0;
@@ -22,11 +35,24 @@ export default function DeckVersionSummaryCard({
     <div
       onClick={() => onclickHandler()}
       className={
-        "cursor-pointer flex flex-col justify-center p-2 mb-2 shadow-lg shadow-cyan-500/10 rounded h-12 w-52 text-sm" +
+        "cursor-pointer flex flex-col justify-center p-2 mb-2 shadow-lg shadow-cyan-500/10 rounded relative h-12 w-52 text-sm" +
         backgroundClass
       }
     >
-      <p className="text-center font-bold capitalize ">{deck.name}</p>
+      <div className="flex flex-row justify-between items-center">
+        <p className="text-center font-bold capitalize ">{deck.name}</p>
+        <IoInformationCircle
+          onMouseEnter={() => setShowPopover(true)}
+          onMouseLeave={() => setShowPopover(false)}
+        ></IoInformationCircle>
+        {
+          <VersionInfoPopOver
+            isOpen={showPopover}
+            versions={versions}
+            deck={deck}
+          ></VersionInfoPopOver>
+        }
+      </div>
       <div className="flex flex-row justify-between items-center">
         <div className="flex-1 flex flex-row items-center justify-center">
           {deckColors.map((color) => (
@@ -42,8 +68,8 @@ export default function DeckVersionSummaryCard({
         </div>
         <div className="flex-1  text-center">
           <span className="font-bold">
-            ( {games.filter((g) => g.result === "win").length} -{" "}
-            {games.filter((g) => g.result === "lose").length})
+            {games.filter((g) => g.result === "win").length} -{" "}
+            {games.filter((g) => g.result === "lose").length}
           </span>
         </div>
       </div>

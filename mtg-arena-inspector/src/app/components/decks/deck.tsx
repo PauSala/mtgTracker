@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IDeck } from "./deck-summary-card";
-import DeckCards from "./deck-cards";
+import DeckCards from "../cards/deck-cards";
 
 export default function Deck({ deck }: { deck: IDeck }) {
   const [cardsMain, setCardsMain] = useState([] as any[]);

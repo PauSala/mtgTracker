@@ -5,21 +5,20 @@ import { IDeck } from "./deck-summary-card";
 import DeckVersionSummaryCard from "./deck-version-summary";
 
 export default function DeckDashboard({
-  selectedDeck,
   games,
   decks,
 }: {
   selectedDeck?: IDeck;
-  decks: { current: IDeck; versions: IDeck[] }[];
+  decks: { current: IDeck; versions: IDeck[] };
   games: any[];
 }) {
   const [currentVersion, setCurrentVersion] = useState<IDeck | null>(null);
 
-  const versions = decks
-    .filter((deck) => deck.current.deckId === selectedDeck?.deckId)
-    .map((decks) => [decks.current, ...decks.versions])
-    .pop()
-    ?.reverse();
+  useEffect(() => {
+    setCurrentVersion(decks.current);
+  }, [decks]);
+
+  const versions = [decks?.current, ...decks?.versions];
 
   const updateCurrentVersion = (versionId: string) => {
     setCurrentVersion(() => {
@@ -29,20 +28,21 @@ export default function DeckDashboard({
 
   return (
     <div className="flex-1">
-      <div className="m-2 p-2"> Versions </div>
+      <div className="text-xl m-2 border-b"> Versions </div>
       <div className="flex flex-row justify-start gap-1 items-center flex-wrap p-2">
         {versions?.map((version, index) => (
           <DeckVersionSummaryCard
             key={version.versionId}
             active={
               version.versionId === currentVersion?.versionId ||
-              (!currentVersion && version.versionId === selectedDeck?.versionId)
+              (!currentVersion && version.versionId === decks.current.versionId)
             }
             deck={version}
             games={games.filter(
               (game) => game?.versionDeckId === version?.versionId
             )}
             onclickHandler={() => updateCurrentVersion(version.versionId)}
+            versions={versions}
           ></DeckVersionSummaryCard>
         ))}
       </div>
@@ -50,14 +50,14 @@ export default function DeckDashboard({
         {currentVersion ? (
           <Deck deck={currentVersion}></Deck>
         ) : (
-          selectedDeck && <Deck deck={selectedDeck}></Deck>
+          <Deck deck={decks.current}></Deck>
         )}
         <div className="p-2">
           <GameTable
             games={games.filter(
               (game) =>
                 game?.versionDeckId === currentVersion?.versionId ||
-                game?.versionDeckId === selectedDeck?.versionId
+                game?.versionDeckId === decks.current.versionId
             )}
           ></GameTable>
         </div>
