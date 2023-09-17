@@ -48,8 +48,8 @@ export default function VersionInfoPopOver({
 
   return (
     <div
-      className={`absolute left-0 top-full mt-1 z-10 shadow-lg shadow-indigo-100/10  bg-teal-600  p-2 rounded ${
-        isOpen ? "opacity-100" : "opacity-0"
+      className={`absolute left-0 top-full mt-1 shadow-lg shadow-indigo-100/10  bg-teal-600  p-2 rounded ${
+        isOpen ? "opacity-100 z-10" : "opacity-0 z-0"
       } transition-opacity duration-300  w-max flex flex-col`}
     >
       <div className="p-1">

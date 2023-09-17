@@ -1,10 +1,4 @@
 import { IDeck, ColorMap, winRateColor } from "./deck-summary-card";
-import {
-  Popover,
-  PopoverHandler,
-  PopoverContent,
-  Button,
-} from "@material-tailwind/react";
 import { useState } from "react";
 
 import { IoInformationCircle } from "react-icons/io5";

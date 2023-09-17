@@ -1,12 +1,3 @@
-import {
-  DiApple,
-  DiCodeigniter,
-  DiGitBranch,
-  DiSenchatouch,
-  DiCoda,
-  DiEnvato,
-} from "react-icons/di";
-
 import { ImStack, ImHome } from "react-icons/im";
 
 export default function NavBar() {
