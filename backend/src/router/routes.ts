@@ -4,30 +4,25 @@
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse, fetchMiddlewares } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { DeckController } from './../decks/get-decks-controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { GetGamesByVersionController } from './../games/get-games-by-version-controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { GetGamesController } from './../games/get-games-controller';
 import type { RequestHandler, Router } from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "DeckStringAttributes": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["Version"]},{"dataType":"enum","enums":["Format"]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "DeckDateAttributes": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["LastPlayed"]},{"dataType":"enum","enums":["LastUpdated"]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "DeckCard": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"quantity":{"dataType":"double","required":true},"cardId":{"dataType":"double","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Deck": {
+    "DeckDTO": {
         "dataType": "refObject",
         "properties": {
-            "attributes": {"dataType":"array","array":{"dataType":"union","subSchemas":[{"dataType":"nestedObjectLiteral","nestedProperties":{"value":{"dataType":"string","required":true},"name":{"ref":"DeckStringAttributes","required":true}}},{"dataType":"nestedObjectLiteral","nestedProperties":{"value":{"dataType":"datetime","required":true},"name":{"ref":"DeckDateAttributes","required":true}}}]},"required":true},
+            "versionId": {"dataType":"string","required":true},
+            "attributes": {"dataType":"array","array":{"dataType":"nestedObjectLiteral","nestedProperties":{"value":{"dataType":"string","required":true},"name":{"dataType":"string","required":true}}},"required":true},
             "deckId": {"dataType":"string","required":true},
             "mana": {"dataType":"string","required":true},
             "mainDeck": {"dataType":"array","array":{"dataType":"refAlias","ref":"DeckCard"},"required":true},
@@ -35,8 +30,25 @@ const models: TsoaRoute.Models = {
             "sideboard": {"dataType":"array","array":{"dataType":"refAlias","ref":"DeckCard"},"required":true},
             "commandZone": {"dataType":"any","required":true},
             "companions": {"dataType":"array","array":{"dataType":"refAlias","ref":"DeckCard"},"required":true},
-            "hash": {"dataType":"double"},
+            "hash": {"dataType":"double","required":true},
             "name": {"dataType":"string","required":true},
+            "active": {"dataType":"boolean","required":true},
+            "winrate": {"dataType":"double","required":true},
+            "createdAt": {"dataType":"datetime","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IGameResult": {
+        "dataType": "refObject",
+        "properties": {
+            "playerDeckId": {"dataType":"string","required":true},
+            "opponentDeckColors": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "result": {"dataType":"string","required":true},
+            "oponent": {"dataType":"string","required":true},
+            "matchId": {"dataType":"string","required":true},
+            "onThePlay": {"dataType":"boolean","required":true},
+            "date": {"dataType":"datetime","required":true},
         },
         "additionalProperties": false,
     },
@@ -66,6 +78,56 @@ export function RegisterRoutes(app: Router) {
                 validatedArgs = getValidatedArgs(args, request, response);
 
                 const controller = new DeckController();
+
+
+              const promise = controller.getDecks.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/games/version/:deckId',
+            ...(fetchMiddlewares<RequestHandler>(GetGamesByVersionController)),
+            ...(fetchMiddlewares<RequestHandler>(GetGamesByVersionController.prototype.getDecksByVersion)),
+
+            function GetGamesByVersionController_getDecksByVersion(request: any, response: any, next: any) {
+            const args = {
+                    deckId: {"in":"path","name":"deckId","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new GetGamesByVersionController();
+
+
+              const promise = controller.getDecksByVersion.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/games/:deckId',
+            ...(fetchMiddlewares<RequestHandler>(GetGamesController)),
+            ...(fetchMiddlewares<RequestHandler>(GetGamesController.prototype.getDecks)),
+
+            function GetGamesController_getDecks(request: any, response: any, next: any) {
+            const args = {
+                    deckId: {"in":"path","name":"deckId","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new GetGamesController();
 
 
               const promise = controller.getDecks.apply(controller, validatedArgs as any);

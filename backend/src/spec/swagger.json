@@ -6,20 +6,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"DeckStringAttributes": {
-				"type": "string",
-				"enum": [
-					"Version",
-					"Format"
-				]
-			},
-			"DeckDateAttributes": {
-				"type": "string",
-				"enum": [
-					"LastPlayed",
-					"LastUpdated"
-				]
-			},
 			"DeckCard": {
 				"properties": {
 					"quantity": {
@@ -37,43 +23,26 @@
 				],
 				"type": "object"
 			},
-			"Deck": {
+			"DeckDTO": {
 				"properties": {
+					"versionId": {
+						"type": "string"
+					},
 					"attributes": {
 						"items": {
-							"anyOf": [
-								{
-									"properties": {
-										"value": {
-											"type": "string"
-										},
-										"name": {
-											"$ref": "#/components/schemas/DeckStringAttributes"
-										}
-									},
-									"required": [
-										"value",
-										"name"
-									],
-									"type": "object"
+							"properties": {
+								"value": {
+									"type": "string"
 								},
-								{
-									"properties": {
-										"value": {
-											"type": "string",
-											"format": "date-time"
-										},
-										"name": {
-											"$ref": "#/components/schemas/DeckDateAttributes"
-										}
-									},
-									"required": [
-										"value",
-										"name"
-									],
-									"type": "object"
+								"name": {
+									"type": "string"
 								}
-							]
+							},
+							"required": [
+								"value",
+								"name"
+							],
+							"type": "object"
 						},
 						"type": "array"
 					},
@@ -114,9 +83,21 @@
 					},
 					"name": {
 						"type": "string"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"winrate": {
+						"type": "number",
+						"format": "double"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
 					}
 				},
 				"required": [
+					"versionId",
 					"attributes",
 					"deckId",
 					"mana",
@@ -125,7 +106,51 @@
 					"sideboard",
 					"commandZone",
 					"companions",
-					"name"
+					"hash",
+					"name",
+					"active",
+					"winrate",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IGameResult": {
+				"properties": {
+					"playerDeckId": {
+						"type": "string"
+					},
+					"opponentDeckColors": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"result": {
+						"type": "string"
+					},
+					"oponent": {
+						"type": "string"
+					},
+					"matchId": {
+						"type": "string"
+					},
+					"onThePlay": {
+						"type": "boolean"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"playerDeckId",
+					"opponentDeckColors",
+					"result",
+					"oponent",
+					"matchId",
+					"onThePlay",
+					"date"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -155,7 +180,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/Deck"
+										"$ref": "#/components/schemas/DeckDTO"
 									},
 									"type": "array"
 								}
@@ -165,6 +190,68 @@
 				},
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/games/version/{deckId}": {
+			"get": {
+				"operationId": "GetDecksByVersion",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IGameResult"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "deckId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/games/{deckId}": {
+			"get": {
+				"operationId": "GetDecks",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IGameResult"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "deckId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},

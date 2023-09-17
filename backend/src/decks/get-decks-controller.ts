@@ -1,12 +1,14 @@
 import { Controller, Get, Route } from "tsoa";
-import { DeckMongoDbModel } from "../infrastructure/mongoDb/deckMongoModel";
-import { Deck } from "./decks-message-handler";
+import { DeckRepositoryMongoDB } from "./deckMongoModel";
+import { DeckDTO } from "./deck";
 
 @Route("decks")
 export class DeckController extends Controller {
 
+    private deckRepository = new DeckRepositoryMongoDB();
+
     @Get()
-    public async getDecks(): Promise<Deck[]> {
-        return DeckMongoDbModel.find({});
+    public async getDecks(): Promise<DeckDTO[]> {
+        return this.deckRepository.find({ active: true });
     }
 }

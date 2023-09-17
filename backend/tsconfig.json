@@ -1,32 +1,24 @@
 {
-    "compilerOptions": {
-        "strict": true,
-        "module": "commonjs",
-        "newLine": "LF",
-        "esModuleInterop": true,
-        "target": "es6",
-        "lib": ["es6"],
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "sourceMap": true,
-        "outDir": "dist/src",
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        },
-        "types": [
-            "node",
-            "jasmine",
-        ],
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "newLine": "LF",
+    "esModuleInterop": true,
+    "target": "es6",
+    "lib": ["es6"],
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "dist/src",
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "*": ["node_modules/*"]
     },
-    "include": [
-        "src/**/*.ts",
-        "spec/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "types": ["node", "jasmine"]
+  },
+  "include": ["src/**/*.ts", "spec/**/*.ts"],
+  "exclude": ["node_modules"]
 }

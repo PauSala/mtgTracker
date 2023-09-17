@@ -1,6 +1,4 @@
-import { GameObject, GameStateMessage } from "../domain/game-state-message";
-import { DeckMongoDbModel } from "../infrastructure/mongoDb/deckMongoModel";
-import { getCard } from "../infrastructure/sqliteDb/sqliteCardRepository";
+import { GameStateMessage } from "../domain/game-state-message";
 import { CustomMessage } from "../logParsing/custom-message";
 import { FromClientMessageParser } from "../logParsing/parsers/fromClientMessage.parser";
 import { GreToClientMessageParser } from "../logParsing/parsers/greToClientEvent.parser";
@@ -8,9 +6,13 @@ import { MatchGameRoomStateChangedEventMessageParser } from "../logParsing/parse
 import { MatchGameRoomStateChangedEvent } from "../logParsing/parsers/messageTypes";
 import { GameHandler } from "./game";
 import { GameMongoDbModel } from "./game-mongo-db-model";
+import { DeckRepository } from "../domain/messageRepository";
+import { DeckDTO, DeckToStore } from "../decks/deck";
 
 
 export class GameMessageHandler {
+
+    constructor(private deckRepository: DeckRepository) { }
 
     public static games: Map<string, GameHandler> = new Map();
 
@@ -43,16 +45,40 @@ export class GameMessageHandler {
             && "greToClientMessages" in (<any>message.message.greToClientEvent);
     }
 
+    private findActiveDeck(decks: DeckDTO[]) {
+        const sorted = [...decks.sort(
+            (a, b) => {
+                const value = new Date(a.attributes.find(a => a.name === "LastPlayed")?.value?.replace(/"/g, "") || "").getTime()
+                    - new Date(b.attributes.find(a => a.name === "LastPlayed")?.value?.replace(/"/g, "") || "").getTime()
+                return value
+            })
+        ];
+        return sorted.pop();
+
+    }
+
     public async handleMessage(message: CustomMessage<Record<string, unknown>>) {
 
         if (this.isSetMatchDeckMessage(message)) {
+
+            console.log("---------------------");
+            console.log("   SET MATCH         ");
+            console.log("---------------------");
+
             const game = new GameHandler("");
+            const deckId = (<any>message.message.Summary).DeckId;
+            const decks = await this.deckRepository.getManyByDeckId(deckId);
+            const activeDeckId = this.findActiveDeck(decks as DeckDTO[])?.versionId as string;
+            game.setDeck(activeDeckId);
             game.setPlayerDeck((<any>message.message.Summary).DeckId);
             GameMessageHandler.games.set("void", game);
             return
         }
 
         if (this.isStartGameMessage(message)) {
+            console.log("---------------------");
+            console.log("   GET MATCH ID      ");
+            console.log("---------------------");
             let game = GameMessageHandler.games.get("void");
             if (game) {
                 game.setId(message.matchId!);
@@ -76,6 +102,9 @@ export class GameMessageHandler {
         }
 
         if (this.isEndGameMessage(message)) {
+            console.log("---------------------");
+            console.log("   END GAME          ");
+            console.log("---------------------");
             game.setEndGameMessage(message.message as MatchGameRoomStateChangedEvent);
             this.handleGame(game);
             return;
@@ -84,7 +113,14 @@ export class GameMessageHandler {
 
     private async handleGame(game: GameHandler) {
         const toStore = await game.build();
-        const model = new GameMongoDbModel(toStore);
-        await model.save();
+        const found = await GameMongoDbModel.findOne({ matchId: toStore.matchId });
+        if (!found) {
+            const model = new GameMongoDbModel(toStore);
+            await model.save();
+        }
+        const gamesByDeck = await GameMongoDbModel.find({ playerDeckId: toStore.playerDeckId });
+        const totalGames = gamesByDeck.length;
+        const winrate = gamesByDeck.filter(game => game.result === "win").length / totalGames;
+        await this.deckRepository.updateMany(toStore.playerDeckId, { winrate });
     }
 }

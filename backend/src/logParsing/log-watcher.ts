@@ -9,7 +9,7 @@ import { getLogFilePath } from "./get-log-path";
 import { emitOnFileChange } from "./emit-on-file-change";
 import { Queue } from "./queue";
 import { DeckMessageHandler } from "../decks/decks-message-handler";
-import { DeckRepositoryMongoDB } from "../infrastructure/mongoDb/deckMongoModel";
+import { DeckRepositoryMongoDB } from "../decks/deckMongoModel";
 import { MessageHandler } from "./message-handler";
 //import { Tail } from "tail";
 
@@ -19,7 +19,6 @@ export class LogWatcher {
     private fileChangedEmitter = new EventEmitter();
     private readonly POLLING_TIMEOUT = 1000;
     private messageHandler = new MessageHandler();
-    private decksMessageHandler: DeckMessageHandler = new DeckMessageHandler(new DeckRepositoryMongoDB());
 
     constructor(private path: string, private lineParser: LineParser) { }
 
@@ -29,7 +28,7 @@ export class LogWatcher {
         await this.parseLogFromStart();
         let line = this.lineParser.next();
         while (line) {
-            this.messageHandler.handleMessage(line);
+            await this.messageHandler.handleMessage(line);
             line = this.lineParser.next();
         }
         console.log("\nEnd line by line processing");
@@ -68,14 +67,19 @@ export class LogWatcher {
         }, this.POLLING_TIMEOUT);
 
         linePolling.on("line", line => {
-            this.lineParser.parseLine(line);
+            try {
+                this.lineParser.parseLine(line);
+            } catch (e) {
+                console.log("Unable to parse line", line);
+            }
+
         });
         const fetchingInterval = setInterval(() => {
             const line = this.lineParser.next();
             if (line) {
                 this.messageHandler.handleMessage(line);
             }
-        });
+        }, 500);
 
         this.fileChangedEmitter.on("rename", () => {
             clearInterval(pollingInterval);

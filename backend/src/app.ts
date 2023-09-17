@@ -17,7 +17,6 @@ import { GameState, updateGameState } from "./domain/gamePlay/stepProcessor";
 import { getCard, getHability } from "./infrastructure/sqliteDb/sqliteCardRepository";
 import { RegisterRoutes } from "./router/routes";
 import router from "./router/router";
-import { GameMessageHandler } from "./games/game-message-handler";
 
 
 export class App {
@@ -69,13 +68,6 @@ export class App {
             const card = await getCard(cardId);
             return res.json(card);
         });
-
-        this.app.get("/games", async (req, res) => {
-
-            const items = GameMessageHandler.games.get(GameMessageHandler.games.keys().next().value)
-            const data = await items?.build();
-            return res.json(data);
-        })
 
         this.app.get("/ability/:abilityId", async (req, res) => {
             const abilityId = req.params.abilityId;

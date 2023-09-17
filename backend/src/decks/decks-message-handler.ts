@@ -1,29 +1,16 @@
 import { CustomMessage } from "../logParsing/custom-message";
 import { FromClientMessageParser } from "../logParsing/parsers/fromClientMessage.parser";
 import { DeckRepository } from "../domain/messageRepository";
-export type DeckStringAttributes = "Version" | "Format";
-export type DeckDateAttributes = | "LastPlayed" | "LastUpdated";
-export type DeckCard = { cardId: number, quantity: number };
 import hash from "hash-it";
+import { DeckDTO, DeckToStore } from "./deck";
 
-export interface Deck {
-    attributes: Array<{ name: DeckStringAttributes, value: string } | { name: DeckDateAttributes, value: Date }>
-    deckId: string;
-    mana: string;
-    mainDeck: DeckCard[];
-    reducedSideboard: DeckCard[];
-    sideboard: DeckCard[];
-    commandZone: unknown;
-    companions: DeckCard[];
-    hash?: number;
-    name: string;
-}
+
 
 export class DeckMessageHandler {
 
     private static readonly MESSAGE_NAME = "Event_GetCoursesV2";
 
-    constructor(private messageRepository: DeckRepository) { }
+    constructor(private deckRepository: DeckRepository) { }
 
     isAllDecksMessage(message: CustomMessage<Record<string, unknown>>) {
 
@@ -32,12 +19,30 @@ export class DeckMessageHandler {
             && message.message.Courses;
     }
 
+    isOneDeckMessage(message: CustomMessage<Record<string, unknown>>) {
+
+        return message.type === FromClientMessageParser.MESSAGE_TYPE
+            && message.name === "Deck_UpsertDeckV2";
+    }
+
+    async updateDeck(message: CustomMessage<Record<string, any>>) {
+        console.log("---------------------");
+        console.log("   UPDATE ONE DECK   ");
+        console.log("---------------------");
+        const name = message.message.Summary.Name;
+        const deckId = message.message.Summary.DeckId;
+        await this.deckRepository.updateMany(deckId, { name, active: true });
+    }
+
     async updateDecks(message: CustomMessage<Record<string, unknown>>) {
+        console.log("---------------------");
+        console.log("   UPDATE ALL DECKS  ");
+        console.log("---------------------");
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const decks: Deck[] = (message.message.Courses as Array<any>)
-            .filter(c => c.CurrentModule === "Complete")
+        const decks: DeckToStore[] = (message.message.Courses as Array<any>)
+            .filter(c => ["Complete", "CreateMatch"].includes(c.CurrentModule))
             .map(c => {
-                const deck: Deck = {
+                const deck: DeckToStore = {
                     attributes: c.CourseDeckSummary?.Attributes,
                     deckId: c.CourseDeckSummary?.DeckId,
                     mana: c.CourseDeckSummary?.Mana,
@@ -47,28 +52,32 @@ export class DeckMessageHandler {
                     sideboard: c.CourseDeck?.Sideboard,
                     commandZone: c.CourseDeck?.CommandZone,
                     companions: c.CourseDeck?.Companions,
+                    active: false,
+                    winrate: 0,
+                    hash: 0
                 }
                 const deckHash = this.getHash(deck);
                 deck.hash = deckHash;
                 return deck;
             });
         for (const deck of decks) {
-            const found = (await this.messageRepository.getManyByDeckId(deck.deckId))
+
+            const found = (await this.deckRepository.getManyByDeckId(deck.deckId))
                 .filter(dbDeck => dbDeck.hash === deck.hash);
+
             if (!found.length) {
-                await this.messageRepository.save(deck);
+                await this.deckRepository.save(deck);
             }
         }
     }
 
-    private getHash(deck: Deck) {
+    private getHash(deck: DeckToStore) {
         return hash({
-            0: deck.name,
-            1: deck.mainDeck,
-            2: deck.reducedSideboard,
-            3: deck.sideboard,
-            4: deck.commandZone,
-            5: deck.companions
+            0: deck.mainDeck,
+            1: deck.reducedSideboard,
+            2: deck.sideboard,
+            3: deck.commandZone,
+            4: deck.companions
         })
     }
 }

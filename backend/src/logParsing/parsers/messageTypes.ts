@@ -1,5 +1,5 @@
 export type MatchGameRoomStateChangedEvent = {
-    timestamp: number,
+    timestamp: string,
     matchGameRoomStateChangedEvent: {
         gameRoomInfo: {
             gameRoomConfig: {

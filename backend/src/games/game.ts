@@ -9,6 +9,7 @@ export class GameHandler {
     private endGameMessage!: MatchGameRoomStateChangedEvent;
     private gameStateMessages: GameStateMessage[] = [];
     private playerDeckId: string = "";
+    private deckId: string = "";
     private userId: string = "";
     private userSeatId!: number | undefined;
 
@@ -31,6 +32,11 @@ export class GameHandler {
 
     public setPlayerDeck(deckId: string) {
         this.playerDeckId = deckId;
+    }
+
+
+    public setDeck(deckId: string) {
+        this.deckId = deckId;
     }
 
     public setEndGameMessage(message: MatchGameRoomStateChangedEvent) {
@@ -105,14 +111,17 @@ export class GameHandler {
             ?.gameRoomInfo.finalMatchResult
             ?.resultList
             .filter((result: any) => result.scope === "MatchScope_Game")
-            .map((res: any) => res.winningTeamId).pop() === this.userSeatId ? "win" : "loss";
+            .map((res: any) => res.winningTeamId).pop() === this.userSeatId ? "win" : "lose";
+        const date = this.getEndGame().timestamp;
         return {
             playerDeckId: this.playerDeckId,
             oponent,
             oponentDeckColors: oponentColors,
             result,
             matchId: this.id,
-            onThePlay: this.userSeatId === 1
+            onThePlay: this.userSeatId === 1,
+            date: new Date(parseInt(date)),
+            versionDeckId: this.deckId
         };
     }
 }
