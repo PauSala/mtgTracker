@@ -8,6 +8,7 @@ import { GameHandler } from "./game";
 import { GameMongoDbModel } from "./game-mongo-db-model";
 import { DeckRepository } from "../domain/messageRepository";
 import { DeckDTO, DeckToStore } from "../decks/deck";
+import { DeckRepositoryMongoDB } from "../decks/deckMongoModel";
 
 
 export class GameMessageHandler {
@@ -61,24 +62,17 @@ export class GameMessageHandler {
 
         if (this.isSetMatchDeckMessage(message)) {
 
-            console.log("---------------------");
-            console.log("   SET MATCH         ");
-            console.log("---------------------");
+            console.log(`\x1b[36mSET MATCH ID\n\x1b[0m`);
 
-            const game = new GameHandler("");
+            const game = new GameHandler("", this.deckRepository);
             const deckId = (<any>message.message.Summary).DeckId;
-            const decks = await this.deckRepository.getManyByDeckId(deckId);
-            const activeDeckId = this.findActiveDeck(decks as DeckDTO[])?.versionId as string;
-            game.setDeck(activeDeckId);
-            game.setPlayerDeck((<any>message.message.Summary).DeckId);
+            game.setPlayerDeck(deckId);
             GameMessageHandler.games.set("void", game);
             return
         }
 
         if (this.isStartGameMessage(message)) {
-            console.log("---------------------");
-            console.log("   GET MATCH ID      ");
-            console.log("---------------------");
+            console.log(`\x1b[36mGET MATCH ID\n\x1b[0m`);
             let game = GameMessageHandler.games.get("void");
             if (game) {
                 game.setId(message.matchId!);
@@ -102,9 +96,7 @@ export class GameMessageHandler {
         }
 
         if (this.isEndGameMessage(message)) {
-            console.log("---------------------");
-            console.log("   END GAME          ");
-            console.log("---------------------");
+            console.log(`\x1b[36mEND GAME\n\x1b[0m`);
             game.setEndGameMessage(message.message as MatchGameRoomStateChangedEvent);
             this.handleGame(game);
             return;
@@ -112,6 +104,15 @@ export class GameMessageHandler {
     }
 
     private async handleGame(game: GameHandler) {
+
+        const foundActiveDeck = this.findActiveDeck((await this.deckRepository.getManyByDeckId(game.getPlayerDeck())));
+        if (foundActiveDeck) {
+            console.log(`\x1b[36mFOUND IN POST GAME: ${foundActiveDeck.versionId}\n\x1b[0m`);
+            await this.deckRepository.updateMany(foundActiveDeck?.deckId, { active: true })
+        }
+        const deckId = foundActiveDeck?.versionId || "";
+        game.setDeckId(deckId);
+
         const toStore = await game.build();
         const found = await GameMongoDbModel.findOne({ matchId: toStore.matchId });
         if (!found) {

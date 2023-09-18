@@ -50,7 +50,7 @@ export function ColorMap(color: string, imageSize: number) {
 
 export const winRateColor = (winrate: number) =>
   winrate > 0.5
-    ? "text-emerald-500"
+    ? "text-emerald-400"
     : winrate < 0.5
     ? "text-red-400"
     : "text-emerald-200";
@@ -66,7 +66,7 @@ export default function DeckSummaryCard({
 }) {
   const [games, setGames] = useState<any[]>([]);
   const deckColors = deck.mana.split("");
-  const backgroundClass = active ? " bg-cyan-600" : " bg-cyan-800";
+  const backgroundClass = active ? " bg-cyan-700" : " bg-cyan-800";
 
   useEffect(() => {
     fetch(`http://localhost:3001/games/${deck.deckId}`)

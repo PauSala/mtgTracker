@@ -26,18 +26,14 @@ export class DeckMessageHandler {
     }
 
     async updateDeck(message: CustomMessage<Record<string, any>>) {
-        console.log("---------------------");
-        console.log("   UPDATE ONE DECK   ");
-        console.log("---------------------");
+        console.log(`\x1b[36mUPDATE DECK ACTIVE\n\x1b[0m`);
         const name = message.message.Summary.Name;
         const deckId = message.message.Summary.DeckId;
         await this.deckRepository.updateMany(deckId, { name, active: true });
     }
 
     async updateDecks(message: CustomMessage<Record<string, unknown>>) {
-        console.log("---------------------");
-        console.log("   UPDATE ALL DECKS  ");
-        console.log("---------------------");
+        console.log(`\x1b[36mSAVE OR UPDATE ALL DECKS\n\x1b[0m`);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decks: DeckToStore[] = (message.message.Courses as Array<any>)
             .filter(c => ["Complete", "CreateMatch"].includes(c.CurrentModule))

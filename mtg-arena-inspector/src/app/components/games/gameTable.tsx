@@ -39,11 +39,11 @@ export default function GameTable({
   }[];
 }) {
   return (
-    <div className="h-[44rem] overflow-y-auto">
+    <div className="h-[44rem] overflow-y-auto p-1">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+          <tr className="rounded">
+            <th scope="col" className="px-6 py-3 rounded-tl-lg">
               Deck type
             </th>
             <th scope="col" className="px-6 py-3">
@@ -55,7 +55,7 @@ export default function GameTable({
             <th scope="col" className="px-6 py-3">
               Oponent
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 rounded-tr-lg">
               Played at
             </th>
           </tr>

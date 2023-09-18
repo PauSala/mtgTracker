@@ -1,4 +1,5 @@
 import { GameStateMessage, GameObject } from "../domain/game-state-message";
+import { DeckRepository } from "../domain/messageRepository";
 import { getCard } from "../infrastructure/sqliteDb/sqliteCardRepository";
 import { MatchGameRoomStateChangedEvent } from "../logParsing/parsers/messageTypes";
 
@@ -6,6 +7,7 @@ import { MatchGameRoomStateChangedEvent } from "../logParsing/parsers/messageTyp
 
 
 export class GameHandler {
+
     private endGameMessage!: MatchGameRoomStateChangedEvent;
     private gameStateMessages: GameStateMessage[] = [];
     private playerDeckId: string = "";
@@ -13,7 +15,7 @@ export class GameHandler {
     private userId: string = "";
     private userSeatId!: number | undefined;
 
-    constructor(private id: string) {
+    constructor(private id: string, private deckRepository: DeckRepository) {
 
     }
 
@@ -34,9 +36,16 @@ export class GameHandler {
         this.playerDeckId = deckId;
     }
 
+    public getPlayerDeck() {
+        return this.playerDeckId;
+    }
 
-    public setDeck(deckId: string) {
+
+    public setDeckId(deckId: string) {
         this.deckId = deckId;
+    }
+    public getDeckId() {
+        return this.deckId;
     }
 
     public setEndGameMessage(message: MatchGameRoomStateChangedEvent) {
@@ -113,6 +122,7 @@ export class GameHandler {
             .filter((result: any) => result.scope === "MatchScope_Game")
             .map((res: any) => res.winningTeamId).pop() === this.userSeatId ? "win" : "lose";
         const date = this.getEndGame().timestamp;
+
         return {
             playerDeckId: this.playerDeckId,
             oponent,

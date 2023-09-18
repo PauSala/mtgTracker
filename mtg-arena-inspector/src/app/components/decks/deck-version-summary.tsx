@@ -20,7 +20,7 @@ export default function DeckVersionSummaryCard({
   const [showPopover, setShowPopover] = useState(false);
 
   const deckColors = deck.mana.split("");
-  const backgroundClass = active ? " bg-cyan-600" : " bg-cyan-800";
+  const backgroundClass = active ? " bg-cyan-700" : " bg-cyan-800";
 
   const winrate =
     games.filter((g) => g.result === "win").length / games.length || 0;
@@ -34,7 +34,7 @@ export default function DeckVersionSummaryCard({
       }
     >
       <div className="flex flex-row justify-between items-center">
-        <p className="text-center font-bold capitalize ">{deck.name}</p>
+        <p className="text-center font-bold text-xs capitalize ">{deck.name}</p>
         <IoInformationCircle
           onMouseEnter={() => setShowPopover(true)}
           onMouseLeave={() => setShowPopover(false)}

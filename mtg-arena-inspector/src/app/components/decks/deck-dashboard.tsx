@@ -3,6 +3,7 @@ import GameTable from "../games/gameTable";
 import Deck from "./deck";
 import { IDeck } from "./deck-summary-card";
 import DeckVersionSummaryCard from "./deck-version-summary";
+import DeckWinrate from "./deck-winrate";
 
 export default function DeckDashboard({
   games,
@@ -10,19 +11,51 @@ export default function DeckDashboard({
 }: {
   selectedDeck?: IDeck;
   decks: { current: IDeck; versions: IDeck[] };
-  games: any[];
+  games: {
+    result: string;
+    date: string;
+    onThePlay: boolean;
+    oponentDeckColors: Array<string>;
+    oponent: string;
+    versionDeckId: string;
+    _id: string;
+  }[];
 }) {
   const [currentVersion, setCurrentVersion] = useState<IDeck | null>(null);
+  const [currentGames, setCurrentGames] = useState(games);
 
   useEffect(() => {
     setCurrentVersion(decks.current);
+    setCurrentGames(() => {
+      return [
+        ...games.filter(
+          (game) => game?.versionDeckId === decks.current.versionId
+        ),
+      ];
+    });
   }, [decks]);
 
-  const versions = [decks?.current, ...decks?.versions];
+  const versions = [decks?.current, ...decks?.versions].sort((b, a) => {
+    const value =
+      new Date(
+        a.attributes
+          .find((a) => a.name === "LastPlayed")
+          ?.value?.replace(/"/g, "") || ""
+      ).getTime() -
+      new Date(
+        b.attributes
+          .find((a) => a.name === "LastPlayed")
+          ?.value?.replace(/"/g, "") || ""
+      ).getTime();
+    return value;
+  });
 
   const updateCurrentVersion = (versionId: string) => {
     setCurrentVersion(() => {
       return versions?.find((v) => v.versionId === versionId) as IDeck;
+    });
+    setCurrentGames(() => {
+      return [...games.filter((game) => game?.versionDeckId === versionId)];
     });
   };
 
@@ -39,7 +72,7 @@ export default function DeckDashboard({
             }
             deck={version}
             games={games.filter(
-              (game) => game?.versionDeckId === version?.versionId
+              (game) => game?.versionDeckId === version.versionId
             )}
             onclickHandler={() => updateCurrentVersion(version.versionId)}
             versions={versions}
@@ -52,14 +85,11 @@ export default function DeckDashboard({
         ) : (
           <Deck deck={decks.current}></Deck>
         )}
-        <div className="p-2">
-          <GameTable
-            games={games.filter(
-              (game) =>
-                game?.versionDeckId === currentVersion?.versionId ||
-                game?.versionDeckId === decks.current.versionId
-            )}
-          ></GameTable>
+        <div className="flex flex-col">
+          {currentGames.length > 0 && (
+            <DeckWinrate games={currentGames}></DeckWinrate>
+          )}
+          <GameTable games={currentGames}></GameTable>
         </div>
       </div>
     </div>

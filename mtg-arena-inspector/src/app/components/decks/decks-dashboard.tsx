@@ -6,7 +6,17 @@ export default function DecksDashboard() {
   const [decks, setDecks] = useState<{ current: IDeck; versions: IDeck[] }[]>(
     []
   );
-  const [games, setGames] = useState<any[]>([]);
+  const [games, setGames] = useState<
+    {
+      result: string;
+      date: string;
+      onThePlay: boolean;
+      oponentDeckColors: Array<string>;
+      oponent: string;
+      _id: string;
+      versionDeckId: string;
+    }[]
+  >([]);
   const [selectedDeck, setSelectedDek] = useState<IDeck | undefined>(undefined);
 
   const statsHandler = (games: any) => {
@@ -65,7 +75,7 @@ const groupDecks = (decks: IDeck[]) => {
     if (!node) {
       deckMap.set(deck.deckId, { current: deck, versions: [] });
     } else {
-      if (deck.createdAt < node.current.createdAt) {
+      if (deck.createdAt > node.current.createdAt) {
         node.versions.push(node.current);
         node.current = deck;
       } else {

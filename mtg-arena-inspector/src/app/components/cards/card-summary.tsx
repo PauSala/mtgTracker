@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CardSummary({ card }: { card: any }) {
   return (
-    <div className="p-1 mb-1 rounded flex items-center justify-start shadow-lg shadow-indigo-100/10  bg-teal-900 bg-opacity-40">
+    <div className="p-1 mb-1 rounded flex items-center justify-start shadow-lg shadow-indigo-100/10  bg-cyan-950 bg-opacity-40">
       <div className="w-8 h-10 relative rounded border border-slate-400">
         <Image
           src={card.image_uris?.small}

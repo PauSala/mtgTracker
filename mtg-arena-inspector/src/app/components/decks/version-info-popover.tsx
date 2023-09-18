@@ -18,8 +18,6 @@ export default function VersionInfoPopOver({
   const [cardsMap, setCardsMap] = useState(new Map());
   const changes = setChanges(versions, deck);
 
-  console.log(changes, cardsMap);
-
   useEffect(() => {
     const toMap = [
       ...changes.incommingMain,
@@ -48,9 +46,9 @@ export default function VersionInfoPopOver({
 
   return (
     <div
-      className={`absolute left-0 top-full mt-1 shadow-lg shadow-indigo-100/10  bg-teal-600  p-2 rounded ${
+      className={`absolute left-0 top-full mt-1 shadow-lg shadow-indigo-100/10  bg-cyan-700  p-2 rounded ${
         isOpen ? "opacity-100 z-10" : "opacity-0 z-0"
-      } transition-opacity duration-300  w-max flex flex-col`}
+      } transition-opacity duration-500  w-max flex flex-col`}
     >
       <div className="p-1">
         <span className="font-bold">Last Played: </span>
@@ -92,7 +90,7 @@ export default function VersionInfoPopOver({
           })}
         </div>
         {changes.outgoingMain.length > 0 && (
-          <p className="font-bold">Ourgoing Main</p>
+          <p className="font-bold">Outgoing Main</p>
         )}
 
         <div>
@@ -107,7 +105,7 @@ export default function VersionInfoPopOver({
         </div>
 
         {changes.outgoingSideBoard.length > 0 && (
-          <p className="font-bold">Ourgoing Sideboard</p>
+          <p className="font-bold">Outgoing Sideboard</p>
         )}
         <div>
           {changes.outgoingSideBoard.map((card) => {
