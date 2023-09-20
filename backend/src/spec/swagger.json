@@ -154,6 +154,85 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"PlayerStats": {
+				"properties": {
+					"constructedSeasonOrdinal": {
+						"type": "number",
+						"format": "double"
+					},
+					"constructedClass": {
+						"type": "string"
+					},
+					"constructedLevel": {
+						"type": "number",
+						"format": "double"
+					},
+					"constructedMatchesWon": {
+						"type": "number",
+						"format": "double"
+					},
+					"constructedMatchesLost": {
+						"type": "number",
+						"format": "double"
+					},
+					"constructedMatchesDrawn": {
+						"type": "number",
+						"format": "double"
+					},
+					"constructedPercentile": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedSeasonOrdinal": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedClass": {
+						"type": "string"
+					},
+					"limitedLevel": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedPercentile": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedMatchesWon": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedMatchesLost": {
+						"type": "number",
+						"format": "double"
+					},
+					"limitedMatchesDrawn": {
+						"type": "number",
+						"format": "double"
+					},
+					"matchId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"constructedSeasonOrdinal",
+					"constructedClass",
+					"constructedLevel",
+					"constructedMatchesWon",
+					"constructedMatchesLost",
+					"constructedMatchesDrawn",
+					"constructedPercentile",
+					"limitedSeasonOrdinal",
+					"limitedClass",
+					"limitedLevel",
+					"limitedPercentile",
+					"limitedMatchesWon",
+					"limitedMatchesLost",
+					"limitedMatchesDrawn"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -252,6 +331,52 @@
 						}
 					}
 				]
+			}
+		},
+		"/user-stats/last": {
+			"get": {
+				"operationId": "GetCurrentStats",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/PlayerStats"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user-stats/all": {
+			"get": {
+				"operationId": "GetSeasonStats",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/PlayerStats"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
 			}
 		}
 	},

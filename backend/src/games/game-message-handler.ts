@@ -7,8 +7,7 @@ import { MatchGameRoomStateChangedEvent } from "../logParsing/parsers/messageTyp
 import { GameHandler } from "./game";
 import { GameMongoDbModel } from "./game-mongo-db-model";
 import { DeckRepository } from "../domain/messageRepository";
-import { DeckDTO, DeckToStore } from "../decks/deck";
-import { DeckRepositoryMongoDB } from "../decks/deckMongoModel";
+import { DeckDTO } from "../decks/deck";
 
 
 export class GameMessageHandler {
@@ -64,7 +63,7 @@ export class GameMessageHandler {
 
             console.log(`\x1b[36mSET MATCH ID\n\x1b[0m`);
 
-            const game = new GameHandler("", this.deckRepository);
+            const game = new GameHandler("");
             const deckId = (<any>message.message.Summary).DeckId;
             game.setPlayerDeck(deckId);
             GameMessageHandler.games.set("void", game);
@@ -79,7 +78,7 @@ export class GameMessageHandler {
                 GameMessageHandler.games.set(message.matchId!, game);
                 GameMessageHandler.games.delete("void");
             }
-            return
+            return message.matchId!
         }
 
         let game = GameMessageHandler.games.get(message.matchId!);

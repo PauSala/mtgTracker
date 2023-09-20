@@ -8,7 +8,7 @@ export default function DeckCards({ cards }: { cards: any[] }) {
           card.image_uris && (
             <div
               key={card?.id}
-              className="m-2 p-1 w-60 flex items-center justify-between shadow-md shadow-indigo-100/10  bg-cyan-500 bg-opacity-10"
+              className="m-2 p-1 w-60 flex items-center justify-between shadow-md shadow-indigo-100/10  rounded bg-gray-700 bg-opacity-70"
             >
               <div className="w-8 h-10 relative border border-slate-400">
                 <Image

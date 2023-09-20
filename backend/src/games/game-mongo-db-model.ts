@@ -1,5 +1,6 @@
 import { Schema, model, Types } from "mongoose";
-import { DeckMongoDbModel } from "../decks/deckMongoModel";
+import { PlayerStats } from "../user-info/user-rank-info";
+import { playerStatsSchema } from "../user-info/user-rank-info-mongo-model";
 export interface IGameResult {
     playerDeckId: string;
     opponentDeckColors: string[];
@@ -7,7 +8,7 @@ export interface IGameResult {
     oponent: string;
     matchId: string;
     onThePlay: boolean;
-    date: Date;
+    date: Date
 }
 
 const GameResult = {

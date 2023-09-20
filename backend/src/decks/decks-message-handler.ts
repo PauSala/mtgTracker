@@ -2,7 +2,7 @@ import { CustomMessage } from "../logParsing/custom-message";
 import { FromClientMessageParser } from "../logParsing/parsers/fromClientMessage.parser";
 import { DeckRepository } from "../domain/messageRepository";
 import hash from "hash-it";
-import { DeckDTO, DeckToStore } from "./deck";
+import { DeckToStore } from "./deck";
 
 
 

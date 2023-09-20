@@ -36,34 +36,32 @@ export default function DecksDashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col min-w-fit">
-      <div className="flex flex-row ">
-        <div className="flex flex-col ">
-          <div className="text-xl m-2 border-b">Your decks</div>
-          <div className="p-2">
-            {decks.map((deck) => (
-              <DeckSummaryCard
-                active={selectedDeck?.deckId === deck.current.deckId}
-                key={deck.current.hash}
-                deck={deck.current}
-                statsHandler={statsHandler}
-              ></DeckSummaryCard>
-            ))}
-          </div>
+    <div className="flex flex-row ">
+      <div className="flex flex-col ">
+        <div className="text-xl m-2 border-b">Your decks</div>
+        <div className="p-2">
+          {decks.map((deck) => (
+            <DeckSummaryCard
+              active={selectedDeck?.deckId === deck.current.deckId}
+              key={deck.current.hash}
+              deck={deck.current}
+              statsHandler={statsHandler}
+            ></DeckSummaryCard>
+          ))}
         </div>
-        {selectedDeck && (
-          <DeckDashboard
-            decks={
-              decks.find((d) => d.current.deckId === selectedDeck?.deckId) as {
-                current: IDeck;
-                versions: IDeck[];
-              }
-            }
-            games={games}
-            selectedDeck={selectedDeck}
-          ></DeckDashboard>
-        )}
       </div>
+      {selectedDeck && (
+        <DeckDashboard
+          decks={
+            decks.find((d) => d.current.deckId === selectedDeck?.deckId) as {
+              current: IDeck;
+              versions: IDeck[];
+            }
+          }
+          games={games}
+          selectedDeck={selectedDeck}
+        ></DeckDashboard>
+      )}
     </div>
   );
 }

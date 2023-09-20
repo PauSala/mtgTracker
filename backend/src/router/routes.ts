@@ -8,6 +8,8 @@ import { DeckController } from './../decks/get-decks-controller';
 import { GetGamesByVersionController } from './../games/get-games-by-version-controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { GetGamesController } from './../games/get-games-controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { GetUserInfoController } from './../user-info/get-user-info.controller';
 import type { RequestHandler, Router } from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -49,6 +51,28 @@ const models: TsoaRoute.Models = {
             "matchId": {"dataType":"string","required":true},
             "onThePlay": {"dataType":"boolean","required":true},
             "date": {"dataType":"datetime","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "PlayerStats": {
+        "dataType": "refObject",
+        "properties": {
+            "constructedSeasonOrdinal": {"dataType":"double","required":true},
+            "constructedClass": {"dataType":"string","required":true},
+            "constructedLevel": {"dataType":"double","required":true},
+            "constructedMatchesWon": {"dataType":"double","required":true},
+            "constructedMatchesLost": {"dataType":"double","required":true},
+            "constructedMatchesDrawn": {"dataType":"double","required":true},
+            "constructedPercentile": {"dataType":"double","required":true},
+            "limitedSeasonOrdinal": {"dataType":"double","required":true},
+            "limitedClass": {"dataType":"string","required":true},
+            "limitedLevel": {"dataType":"double","required":true},
+            "limitedPercentile": {"dataType":"double","required":true},
+            "limitedMatchesWon": {"dataType":"double","required":true},
+            "limitedMatchesLost": {"dataType":"double","required":true},
+            "limitedMatchesDrawn": {"dataType":"double","required":true},
+            "matchId": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -131,6 +155,54 @@ export function RegisterRoutes(app: Router) {
 
 
               const promise = controller.getDecks.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/user-stats/last',
+            ...(fetchMiddlewares<RequestHandler>(GetUserInfoController)),
+            ...(fetchMiddlewares<RequestHandler>(GetUserInfoController.prototype.getCurrentStats)),
+
+            function GetUserInfoController_getCurrentStats(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new GetUserInfoController();
+
+
+              const promise = controller.getCurrentStats.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/user-stats/all',
+            ...(fetchMiddlewares<RequestHandler>(GetUserInfoController)),
+            ...(fetchMiddlewares<RequestHandler>(GetUserInfoController.prototype.getSeasonStats)),
+
+            function GetUserInfoController_getSeasonStats(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new GetUserInfoController();
+
+
+              const promise = controller.getSeasonStats.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

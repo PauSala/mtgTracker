@@ -60,7 +60,7 @@ export default function DeckDashboard({
   };
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 shrink-0">
       <div className="text-xl m-2 border-b"> Versions </div>
       <div className="flex flex-row justify-start gap-1 items-center flex-wrap p-2">
         {versions?.map((version, index) => (
@@ -79,13 +79,13 @@ export default function DeckDashboard({
           ></DeckVersionSummaryCard>
         ))}
       </div>
-      <div className="flex flex-row ">
+      <div className="flex flex-row shrink-0">
         {currentVersion ? (
           <Deck deck={currentVersion}></Deck>
         ) : (
           <Deck deck={decks.current}></Deck>
         )}
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[50rem]">
           {currentGames.length > 0 && (
             <DeckWinrate games={currentGames}></DeckWinrate>
           )}

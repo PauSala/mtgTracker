@@ -1,5 +1,4 @@
 import { GameStateMessage, GameObject } from "../domain/game-state-message";
-import { DeckRepository } from "../domain/messageRepository";
 import { getCard } from "../infrastructure/sqliteDb/sqliteCardRepository";
 import { MatchGameRoomStateChangedEvent } from "../logParsing/parsers/messageTypes";
 
@@ -15,7 +14,7 @@ export class GameHandler {
     private userId: string = "";
     private userSeatId!: number | undefined;
 
-    constructor(private id: string, private deckRepository: DeckRepository) {
+    constructor(private id: string) {
 
     }
 
